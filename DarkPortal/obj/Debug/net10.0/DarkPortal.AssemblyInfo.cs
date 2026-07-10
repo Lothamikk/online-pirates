@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DarkPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9aee3f46c3a48cd197cf0d5c71bd48276fc6e799")]
 [assembly: System.Reflection.AssemblyProductAttribute("DarkPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DarkPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
