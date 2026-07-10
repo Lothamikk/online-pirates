@@ -1,0 +1,190 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject DarkPortal.Services.LocaleService Loc
+@inject IServiceProvider ServiceProvider
+@inject IServiceScopeFactory ScopeFactory
+@inject DarkPortal.Services.NotificationService NotificationService
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject IHttpContextAccessor HttpContextAccessor
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link href="css/site.css" rel="stylesheet" />
+
+<MudThemeProvider Theme="_currentTheme" IsDarkMode="_isDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudLink Href="/" Typo="Typo.h5" Color="Color.Inherit" Underline="Underline.None" Class="ml-3"
+                 Style="font-family:var(--font-mono);color:var(--accent-muted);font-weight:600;text-shadow:0 0 8px rgba(0,200,83,0.2);">
+            @Loc.T("menu.title")
+        </MudLink>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.School" Href="/lessons" Title="Уроки" />
+        <MudIconButton Icon="@Icons.Material.Filled.Build" Href="/tools" Title="Утилиты" />
+        <MudIconButton Icon="@Icons.Material.Filled.Radar" Href="/feed" Title="@Loc.T("menu.feed")" />
+        <MudIconButton Icon="@Icons.Material.Filled.EmojiEvents" Href="/achievements" Title="Достижения" />
+        <div style="position:relative;display:inline-flex;">
+            <MudIconButton Icon="@Icons.Material.Filled.People" Href="/friends" Title="Друзья" />
+            @if (_pendingCount > 0)
+            {
+                <span style="position:absolute;top:4px;right:4px;background:#EF4444;color:#FFF;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700;pointer-events:none;">
+                    @_pendingCount
+                </span>
+            }
+        </div>
+        <MudIconButton Icon="@Icons.Material.Filled.Settings" Href="/settings" Title="@Loc.T("menu.settings")" />
+        @if (_isAdmin)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.AdminPanelSettings" Href="/admin" Title="Админ-панель" />
+        }
+        <MudIconButton Icon="@Icons.Material.Filled.Message" Href="/messages" Title="Анонимные сообщения" />
+        <MudIconButton Icon="@Icons.Material.Filled.Forum" Href="/forum" Title="Форум" />
+
+        @if (_isLoggedIn)
+        {
+            <MudLink Href="@($"/profile/{_userId}")" Typo="Typo.body2" Color="Color.Inherit" Underline="Underline.None" Class="mx-2"
+                     Style="color:var(--text-main);font-weight:500;">
+                @_userName
+            </MudLink>
+            <MudIconButton Icon="@Icons.Material.Filled.Logout" OnClick="OpenLogoutDialog" Title="@Loc.T("menu.logout")" />
+        }
+        else
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.Login" Href="/auth" Title="@Loc.T("menu.login")" />
+        }
+
+        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Filled.Brightness7 : Icons.Material.Filled.Brightness4)"
+                       OnClick="ToggleThemeCookie"
+                       Title="@(_isDarkMode ? "Светлая тема" : "Тёмная тема")" />
+    </MudAppBar>
+    <MudMainContent Style="background-color:var(--bg-body);min-height:100vh;">
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-6">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _isDarkMode = true;
+    private bool _isLoggedIn;
+    private string _userName = "";
+    private string _userId = "";
+    private int _pendingCount;
+    private bool _isAdmin;
+
+    private MudTheme _currentTheme = new()
+    {
+        PaletteDark = new PaletteDark()
+        {
+            Black = "#0F1115",
+            Primary = "#2E8B57",
+            Secondary = "#181C24",
+            Surface = "#181C24",
+            AppbarBackground = "#181C24",
+            AppbarText = "#A5B0BB",
+            Background = "#0F1115",
+            TextPrimary = "#FFFFFF",
+            TextSecondary = "#A5B0BB"
+        },
+        PaletteLight = new PaletteLight()
+        {
+            Black = "#1F2937",
+            Primary = "#2E8B57",
+            Secondary = "#F5F5F7",
+            Surface = "#FFFFFF",
+            AppbarBackground = "#FFFFFF",
+            AppbarText = "#1F2937",
+            Background = "#F5F5F7",
+            TextPrimary = "#1F2937",
+            TextSecondary = "#6B7280"
+        }
+    };
+
+    protected override void OnInitialized()
+    {
+        var cookie = HttpContextAccessor.HttpContext?.Request.Cookies["theme_mode"];
+        _isDarkMode = cookie != "false";
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!_isDarkMode)
+            {
+                await JS.InvokeVoidAsync("eval", "document.documentElement.setAttribute('data-theme', 'light')");
+            }
+
+            try
+            {
+                var authState = await AuthProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+                _isLoggedIn = user.Identity?.IsAuthenticated == true;
+                _userName = user.Identity?.Name ?? "";
+                _userId = user.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+                if (_isLoggedIn && !string.IsNullOrEmpty(_userId))
+                {
+                    using var scope = ServiceProvider.CreateScope();
+                    var um = scope.ServiceProvider.GetRequiredService<UserManager<DarkPortal.Models.AppUser>>();
+                    var au = await um.FindByIdAsync(_userId);
+                    if (au != null && !string.IsNullOrEmpty(au.DisplayName)) _userName = au.DisplayName;
+
+                    var adminService = scope.ServiceProvider.GetRequiredService<DarkPortal.Services.AdminService>();
+                    _isAdmin = await adminService.IsAdminAsync(_userId);
+
+                    await UpdatePendingCount();
+
+                    NotificationService.OnChanged += async () =>
+                    {
+                        await UpdatePendingCount();
+                        await InvokeAsync(StateHasChanged);
+                    };
+                }
+                StateHasChanged();
+            }
+            catch { }
+        }
+    }
+
+    private async Task UpdatePendingCount()
+    {
+        using var scope = ScopeFactory.CreateScope();
+        var friendService = scope.ServiceProvider.GetRequiredService<DarkPortal.Services.FriendService>();
+        var pending = await friendService.GetPendingRequests(_userId);
+        _pendingCount = pending.Count;
+    }
+
+    private async void ToggleThemeCookie()
+    {
+        _isDarkMode = !_isDarkMode;
+        await JS.InvokeVoidAsync("eval", $"document.cookie = 'theme_mode={(_isDarkMode ? "true" : "false")};path=/;max-age=31536000'");
+        await JS.InvokeVoidAsync("eval", _isDarkMode ?
+            "document.documentElement.removeAttribute('data-theme')" :
+            "document.documentElement.setAttribute('data-theme', 'light')");
+        StateHasChanged();
+    }
+
+    private async Task OpenLogoutDialog()
+    {
+        var parameters = new DialogParameters
+        {
+            ["Title"] = "Выход",
+            ["Message"] = "Вы уверены, что хотите выйти из аккаунта?",
+            ["YesText"] = "Выйти",
+            ["CancelText"] = "Отмена"
+        };
+        var dialog = await DialogService.ShowAsync<MudMessageBox>("", parameters);
+        var result = await dialog.Result;
+        dialog.Close();
+        if (result?.Data as bool? == true)
+        {
+            Navigation.NavigateTo("/api/logout", forceLoad: true);
+        }
+    }
+}

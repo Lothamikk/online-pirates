@@ -1,0 +1,59 @@
+﻿@page "/learn/data-is-oil"
+@rendermode InteractiveServer
+@using DarkPortal.Models
+@inject DarkPortal.Services.ProfileService ProfileState
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-4">🛡️ Урок 1: Кто ты в мире анонимности?</MudText>
+<MudAlert Severity="Severity.Warning" Class="mb-4">⚠️ <b>Важно:</b> От твоих честных ответов зависит, какие уроки мы тебе порекомендуем.</MudAlert>
+
+@if (_step == 0)
+{
+    <MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">Вопрос 1 из 3</MudText><MudText Typo="Typo.body1" Class="mt-3">Как ты используешь интернет?</MudText><MudRadioGroup T="string" @bind-Value="_q1" Class="mt-2"><MudRadio T="string" Value="@("a")" Color="Color.Primary">Просто сижу в соцсетях, смотрю видео</MudRadio><MudRadio T="string" Value="@("b")" Color="Color.Warning">Работаю с документами, почтой, банками</MudRadio><MudRadio T="string" Value="@("c")" Color="Color.Error">Я журналист / активист / работаю с чувствительными данными</MudRadio></MudRadioGroup></MudCardContent><MudCardActions><MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => GoToStep(1)" Disabled="@string.IsNullOrEmpty(_q1)">Далее</MudButton></MudCardActions></MudCard>
+}
+@if (_step == 1)
+{
+    <MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">Вопрос 2 из 3</MudText><MudText Typo="Typo.body1" Class="mt-3">Что ты уже используешь для защиты?</MudText><MudCheckBox T="bool" @bind-Checked="_q2a" Label="Двухфакторная аутентификация (2FA)" Color="Color.Success" Class="mt-2" /><MudCheckBox T="bool" @bind-Checked="_q2b" Label="VPN" Color="Color.Success" /><MudCheckBox T="bool" @bind-Checked="_q2c" Label="Менеджер паролей" Color="Color.Success" /><MudCheckBox T="bool" @bind-Checked="_q2d" Label="Tor Browser" Color="Color.Success" /></MudCardContent><MudCardActions><MudButton Variant="Variant.Outlined" Color="Color.Default" OnClick="() => GoToStep(0)">Назад</MudButton><MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => GoToStep(2)">Далее</MudButton></MudCardActions></MudCard>
+}
+@if (_step == 2)
+{
+    <MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">Вопрос 3 из 3</MudText><MudText Typo="Typo.body1" Class="mt-3">Какой у тебя пароль от основной почты?</MudText><MudRadioGroup T="string" @bind-Value="_q3" Class="mt-2"><MudRadio T="string" Value="@("a")" Color="Color.Error">Простые слова или цифры</MudRadio><MudRadio T="string" Value="@("b")" Color="Color.Warning">Один сложный пароль на всё</MudRadio><MudRadio T="string" Value="@("c")" Color="Color.Success">Уникальные пароли через менеджер</MudRadio></MudRadioGroup></MudCardContent><MudCardActions><MudButton Variant="Variant.Outlined" Color="Color.Default" OnClick="() => GoToStep(1)">Назад</MudButton><MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="ShowResult" Disabled="@string.IsNullOrEmpty(_q3)">Узнать результат</MudButton></MudCardActions></MudCard>
+}
+@if (_step == 3)
+{
+    <MudCard Elevation="5" Class="mb-4" Style="@($"border:2px solid {_borderColor};")"><MudCardContent><MudText Typo="Typo.h5" Color="Color.Primary">🎯 Твой уровень: <b>@_levelName</b></MudText><MudProgressLinear Value="@_score" Color="@(_level switch { 1 => Color.Success, 2 => Color.Warning, _ => Color.Error })" Class="mt-4 mb-4" /><MudText Typo="Typo.body1" Class="mt-2">@_levelDescription</MudText><MudText Typo="Typo.h6" Class="mt-4">📋 Твой план обучения:</MudText>@foreach (var l in _recommendedLessons){
+        <MudText Typo="Typo.body1" Class="mt-2">@l</MudText>
+    }
+    <MudAlert Severity="Severity.Info" Class="mt-4">💡 <b>Совет:</b> @_tip</MudAlert></MudCardContent><MudCardActions><MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="() => GoToStep(0)">Пройти заново</MudButton><MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson">✅ Завершить урок</MudButton></MudCardActions></MudCard>
+}
+
+@code {
+    private int _step = 0, _score, _level; private string _q1 = "", _q3 = "", _levelName = "", _levelDescription = "", _tip = "", _borderColor = "#4caf50", _userId = ""; private bool _q2a, _q2b, _q2c, _q2d; private List<string> _recommendedLessons = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+    }
+
+    private void GoToStep(int s) => _step = s;
+
+    private void ShowResult()
+    {
+        _score = 0; _score += _q1 switch { "a" => 10, "b" => 5, _ => 0 }; if (_q2a) _score += 5; if (_q2b) _score += 5; if (_q2c) _score += 5; if (_q2d) _score += 5; _score += _q3 switch { "a" => 0, "b" => 5, "c" => 10, _ => 0 };
+        if (_score >= 30) { _level = 1; _levelName = "🟢 Продвинутый"; _levelDescription = "Ты многое знаешь."; _tip = "Включи 2FA на почте."; _recommendedLessons = new() { "✅ Урок 2", "✅ Урок 3" }; }
+        else if (_score >= 15) { _level = 2; _levelName = "🟡 Средний"; _levelDescription = "Есть пробелы."; _tip = "Установи Bitwarden."; _recommendedLessons = new() { "✅ Урок 2", "✅ Урок 3", "✅ Урок 4" }; }
+        else { _level = 3; _levelName = "🔴 Новичок"; _levelDescription = "Начнём с нуля."; _tip = "Придумай пароль 12+ символов."; _recommendedLessons = new() { "✅ Урок 2", "✅ Урок 3", "✅ Урок 4", "✅ Урок 8" }; }
+        _borderColor = _level switch { 1 => "#4caf50", 2 => "#ff9800", _ => "#f44336" }; ProfileState.UserLevel = _level; _step = 3;
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "data-is-oil");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

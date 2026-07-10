@@ -1,0 +1,77 @@
+﻿@page "/auth"
+@inject NavigationManager Navigation
+
+<div style="display:flex;justify-content:center;align-items:center;min-height:70vh;">
+    <div style="width:100%;max-width:420px;">
+        <MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6" Style="text-align:center;text-shadow:0 0 8px rgba(0,200,83,0.3);">
+            @(isReset ? "СБРОС ПАРОЛЯ" : isLogin ? "ВХОД" : "РЕГИСТРАЦИЯ")
+        </MudText>
+
+        <MudCard Elevation="4">
+            <MudCardContent>
+                @if (isReset)
+                {
+                    <form method="post" action="/api/reset-password">
+                        <MudTextField T="string" @bind-Value="username" Label="Логин" Variant="Variant.Outlined" Name="username" />
+                        <MudTextField T="string" @bind-Value="recoveryCode" Label="Код восстановления" Variant="Variant.Outlined" Name="recoverycode" Class="mt-4" />
+                        <MudTextField T="string" @bind-Value="newPassword" Label="Новый пароль" Variant="Variant.Outlined" InputType="@(_showPass ? InputType.Text : InputType.Password)" Name="newpassword" Class="mt-4" Adornment="Adornment.End" AdornmentIcon="@(_showPass ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)" OnAdornmentClick="TogglePassVisibility" />
+                        <MudButton Variant="Variant.Filled" Color="Color.Warning" ButtonType="ButtonType.Submit" FullWidth="true" Class="mt-4">Сбросить пароль</MudButton>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" action="@(isLogin ? "/api/login" : "/api/register")">
+                        <MudTextField T="string" @bind-Value="username" Label="Логин" Variant="Variant.Outlined" Name="username" />
+                        <MudTextField T="string" @bind-Value="password" Label="Пароль" Variant="Variant.Outlined" InputType="@(_showPass ? InputType.Text : InputType.Password)" Name="password" Class="mt-4" Adornment="Adornment.End" AdornmentIcon="@(_showPass ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)" OnAdornmentClick="TogglePassVisibility" />
+                        @if (!isLogin)
+                        {
+                            <MudTextField T="string" @bind-Value="confirmPassword" Label="Подтверди пароль" Variant="Variant.Outlined" InputType="@(_showConfirmPass ? InputType.Text : InputType.Password)" Name="confirmPassword" Class="mt-4" Adornment="Adornment.End" AdornmentIcon="@(_showConfirmPass ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)" OnAdornmentClick="ToggleConfirmPassVisibility" />
+                            <MudText Typo="Typo.body2" Class="mt-4">Сколько будет <b>@_captchaQuestion</b>?</MudText>
+                            <MudTextField T="string" @bind-Value="_captchaAnswer" Label="Ответ" Variant="Variant.Outlined" Name="captcha" Class="mt-2" />
+                            <input type="hidden" name="captchaExpected" value="@_captchaExpected" />
+                        }
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <MudAlert Severity="Severity.Error" Class="mt-4">@errorMessage</MudAlert>
+                        }
+                        @if (!string.IsNullOrEmpty(successMessage))
+                        {
+                            <MudAlert Severity="Severity.Success" Class="mt-4" Style="white-space:pre-line;">@successMessage</MudAlert>
+                        }
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit" FullWidth="true" Class="mt-4">@(isLogin ? "Войти" : "Создать аккаунт")</MudButton>
+                    </form>
+                }
+            </MudCardContent>
+        </MudCard>
+
+        @if (!isReset)
+        {
+            <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="ToggleMode" Class="mt-2" FullWidth="true">@(isLogin ? "Нет аккаунта? Зарегистрироваться" : "Уже есть аккаунт? Войти")</MudButton>
+        }
+        <MudButton Variant="Variant.Text" Color="Color.Secondary" OnClick="ToggleReset" Class="mt-2" FullWidth="true">@(isReset ? "Назад ко входу" : "Забыли пароль?")</MudButton>
+    </div>
+</div>
+
+@code {
+    private string username = "", password = "", confirmPassword = "", newPassword = "", recoveryCode = "", errorMessage = "", successMessage = "", _captchaAnswer = "";
+    private bool isLogin = true, isReset = false, _showPass = false, _showConfirmPass = false;
+    private int _captchaNum1, _captchaNum2;
+    private string _captchaQuestion => $"{_captchaNum1} + {_captchaNum2}";
+    private string _captchaExpected => $"{_captchaNum1 + _captchaNum2}";
+
+    protected override void OnInitialized()
+    {
+        _captchaNum1 = Random.Shared.Next(1, 10); _captchaNum2 = Random.Shared.Next(1, 10);
+        var uri = new Uri(Navigation.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        var error = query["error"]; var reset = query["reset"]; var registered = query["registered"]; var code = query["code"]; var msg = query["msg"];
+        errorMessage = error switch { "invalid" => "Неверный логин или пароль", "exists" => "Пользователь уже существует", "notfound" => "Пользователь не найден", "reseterror" => "Ошибка сброса пароля", "badcode" => "Неверный код восстановления", "captcha" => "Неверный ответ", "reglimit" => msg != null ? Uri.UnescapeDataString(msg) : "Ошибка регистрации", _ => "" };
+        if (reset == "ok") { successMessage = "✅ Пароль изменён!"; isReset = false; isLogin = true; }
+        if (registered == "ok" && !string.IsNullOrEmpty(code)) { isLogin = true; successMessage = $"✅ Аккаунт создан!\n\n🔑 Код восстановления:\n{code}\n\n⚠️ Сохрани! Код также в Настройках (⚙️)."; }
+    }
+
+    private void ToggleMode() { isLogin = !isLogin; errorMessage = ""; successMessage = ""; }
+    private void ToggleReset() { isReset = !isReset; errorMessage = ""; successMessage = ""; }
+    private void TogglePassVisibility() => _showPass = !_showPass;
+    private void ToggleConfirmPassVisibility() => _showConfirmPass = !_showConfirmPass;
+}

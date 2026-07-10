@@ -1,0 +1,85 @@
+﻿@page "/banned"
+@rendermode InteractiveServer
+@inject AdminService AdminService
+@inject NavigationManager Navigation
+@using System.Web
+
+<PageTitle>Доступ заблокирован — Online Pirates</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-16">
+    <MudPaper Class="pa-8" Elevation="10">
+        <div style="text-align:center;font-size:4rem;margin-bottom:8px;">&#9760;</div>
+        <MudText Typo="Typo.h4" Color="Color.Error" GutterBottom Style="text-align:center;font-weight:700;">
+            Вы заблокированы
+        </MudText>
+
+        <div style="background:#181C24;border-radius:12px;padding:16px;margin-top:16px;border-left:4px solid #EF4444;">
+            <MudText Style="color:#E5E7EB;font-size:1rem;">
+                <strong style="color:#EF4444;">🚫 Причина бана:</strong> @_reason
+            </MudText>
+            <MudText Style="color:#E5E7EB;font-size:1rem;margin-top:4px;">
+                <strong style="color:#EF4444;">👤 Администратор:</strong> @_adminName
+            </MudText>
+            <MudText Style="color:#E5E7EB;font-size:1rem;margin-top:4px;">
+                <strong style="color:#EF4444;">📅 Дата бана:</strong> @_date
+            </MudText>
+        </div>
+
+        <MudDivider Class="my-6" Style="background-color:#444;" />
+
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+            <MudButton Variant="Variant.Filled" OnClick="GoToAppeal" FullWidth="true"
+                       Style="border-radius:10px;padding:12px;font-weight:600;text-transform:none;background-color:#2E8B57;color:#FFFFFF;">
+                📩 Подать апелляцию
+            </MudButton>
+            <MudText Typo="Typo.body2" Style="text-align:center;font-size:0.85rem;color:#A5B0BB;">
+                Администратор рассмотрит вашу апелляцию в ближайшее время
+            </MudText>
+        </div>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    [Parameter] public string? Reason { get; set; }
+    [Parameter] public string? Admin { get; set; }
+    [Parameter] public string? Date { get; set; }
+    [Parameter] public string? UserId { get; set; }
+    [Parameter] public string? UserName { get; set; }
+
+    private string _reason = "";
+    private string _adminName = "";
+    private string _date = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = new Uri(Navigation.Uri);
+        var query = HttpUtility.ParseQueryString(uri.Query);
+
+        Reason = query["reason"];
+        Admin = query["admin"];
+        Date = query["date"];
+        UserId = query["userId"];
+        UserName = query["userName"];
+
+        _reason = Reason ?? "Не указано";
+        _adminName = Admin ?? "Не указано";
+        _date = Date ?? "Не указано";
+
+        if (!string.IsNullOrEmpty(UserId))
+        {
+            var banInfo = await AdminService.GetActiveBanDisplayAsync(UserId);
+            if (banInfo != null)
+            {
+                _reason = banInfo.Reason;
+                _adminName = banInfo.AdminName;
+                _date = banInfo.BannedAtLocal;
+            }
+        }
+    }
+
+    private void GoToAppeal()
+    {
+        var url = $"/appeal?userId={UserId}&userName={UserName}&reason={Uri.EscapeDataString(_reason)}&admin={Uri.EscapeDataString(_adminName)}&date={Uri.EscapeDataString(_date)}";
+        Navigation.NavigateTo(url);
+    }
+}

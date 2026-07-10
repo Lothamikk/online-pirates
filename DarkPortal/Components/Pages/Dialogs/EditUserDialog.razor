@@ -1,0 +1,33 @@
+﻿@using MudBlazor
+@using DarkPortal.Models
+<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="_displayName" Label="Отображаемое имя" />
+        <MudTextField @bind-Value="_bio" Label="Био" Lines="3" Class="mt-3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Отмена</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Save">Сохранить</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = default!;
+    [Parameter] public AppUser? User { get; set; }
+
+    private string _displayName = "";
+    private string _bio = "";
+
+    protected override void OnInitialized()
+    {
+        _displayName = User?.DisplayName ?? "";
+        _bio = User?.Bio ?? "";
+    }
+
+    private void Save()
+    {
+        MudDialog.Close(DialogResult.Ok(new { DisplayName = _displayName, Bio = _bio }));
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

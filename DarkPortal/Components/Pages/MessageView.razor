@@ -1,0 +1,60 @@
+﻿@page "/msg/{Id}"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.MessageService MessageService
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">
+    <MudIcon Icon="@Icons.Material.Filled.Message" /> Анонимное сообщение
+</MudText>
+
+@if (_notFound)
+{
+    <MudAlert Severity="Severity.Error">
+        ❌ Сообщение не найдено или уже прочитано.
+    </MudAlert>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/messages" Class="mt-4">
+        Создать своё сообщение
+    </MudButton>
+}
+else if (_message != null)
+{
+    <MudCard Elevation="4">
+        <MudCardContent>
+            <MudAlert Severity="Severity.Warning" Class="mb-4">
+                ⚠️ Сейчас сообщение будет удалено. Скопируй важное прямо сейчас!
+            </MudAlert>
+            <MudPaper Elevation="3" Class="pa-4" Style="max-height:400px;overflow-y:auto;word-wrap:break-word;white-space:pre-wrap;">
+                @_message.Text
+            </MudPaper>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/messages">
+                Создать своё сообщение
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+}
+
+@code {
+    [Parameter] public string Id { get; set; } = "";
+
+    private DarkPortal.Models.SecretMessage? _message;
+    private bool _notFound = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _message = await MessageService.GetMessage(Id);
+        if (_message == null)
+        {
+            _notFound = true;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && _message != null)
+        {
+            // Удаляем сообщение после первого рендера
+            await MessageService.DeleteMessage(_message.Id);
+        }
+    }
+}

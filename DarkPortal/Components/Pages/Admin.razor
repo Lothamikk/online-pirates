@@ -1,0 +1,552 @@
+﻿@page "/admin"
+@using Microsoft.AspNetCore.Authorization
+@using DarkPortal.Models
+@using DarkPortal.Services
+@using System.Security.Claims
+@attribute [Authorize(Roles = "Admin")]
+@inject AdminService AdminService
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthStateProvider
+
+<style>
+    .admin-page {
+        background: #0F1115;
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .admin-title {
+        color: #E5E7EB !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 24px !important;
+        text-shadow: 0 0 8px rgba(0,200,83,0.2);
+    }
+
+    .admin-subtitle {
+        color: #A5B0BB !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 12px !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .mud-tabs-toolbar {
+        background: transparent !important;
+        border-bottom: 1px solid #374151 !important;
+    }
+
+    .mud-tab {
+        color: #A5B0BB !important;
+        font-size: 13px !important;
+        text-transform: none !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+        .mud-tab:hover {
+            color: #E5E7EB !important;
+        }
+
+        .mud-tab.mud-tab-active {
+            color: #2E8B57 !important;
+        }
+
+    .stat-card {
+        background: #181C24 !important;
+        border: 1px solid #374151 !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        text-align: center !important;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3) !important;
+        transition: all 0.2s ease;
+    }
+
+        .stat-card:hover {
+            border-color: rgba(46,139,87,0.3) !important;
+            box-shadow: 0 8px 12px -2px rgba(0,0,0,0.4) !important;
+        }
+
+    .stat-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: #A5B0BB;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+    }
+
+    .stat-value {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .stat-green {
+        color: #2E8B57;
+    }
+
+    .stat-purple {
+        color: #8B5CF6;
+    }
+
+    .stat-blue {
+        color: #6EE7B7;
+    }
+
+    .stat-white {
+        color: #E5E7EB;
+    }
+
+    .search-box {
+        background: #12141B;
+        border: 1px solid #374151;
+        color: #E5E7EB;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 300px;
+        outline: none;
+    }
+
+        .search-box:focus {
+            border-color: #2E8B57;
+        }
+
+    .btn-green {
+        background: #2E8B57;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .btn-green:hover {
+            background: #3A9D6A;
+            box-shadow: 0 0 12px rgba(0,200,83,0.2);
+        }
+
+    .mud-table-head th {
+        background: #12161F !important;
+        color: #A5B0BB !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 11px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        border-bottom: 1px solid #374151 !important;
+    }
+
+    .mud-table-body td {
+        color: #E5E7EB !important;
+        border-bottom: 1px solid rgba(55,65,81,0.3) !important;
+    }
+
+    .mud-table-row {
+        background: #181C24 !important;
+    }
+
+        .mud-table-row:nth-child(even) {
+            background: #1F232E !important;
+        }
+
+        .mud-table-row:hover {
+            background: #252B36 !important;
+        }
+</style>
+
+<div class="admin-page">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="mt-6">
+
+        @if (!_isSuperAdmin && !_isAdmin)
+        {
+            <MudAlert Severity="Severity.Error">Доступ запрещён. Требуется роль администратора.</MudAlert>
+            return;
+        }
+
+        <MudText Typo="Typo.h4" Class="mb-2 admin-title">Админ-панель</MudText>
+        <MudText Class="mb-4 admin-subtitle">@(_isSuperAdmin ? "Режим: Главный администратор" : "Режим: Администратор")</MudText>
+
+        <MudTabs Elevation="0" Rounded="true" PanelClass="pa-0">
+
+            <MudTabPanel Text="Статистика" Icon="@Icons.Material.Outlined.Dashboard">
+                <MudGrid>
+                    <MudItem xs="12" sm="6" md="3">
+                        <div class="stat-card">
+                            <div class="stat-label">Пользователи</div>
+                            <div class="stat-value stat-green">@_stats?.TotalUsers</div>
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="3">
+                        <div class="stat-card">
+                            <div class="stat-label">Новости</div>
+                            <div class="stat-value stat-purple">@_stats?.TotalNews</div>
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="3">
+                        <div class="stat-card">
+                            <div class="stat-label">Уроков пройдено</div>
+                            <div class="stat-value stat-blue">@_stats?.TotalLessonsCompleted</div>
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="3">
+                        <div class="stat-card">
+                            <div class="stat-label">Профилей</div>
+                            <div class="stat-value stat-white">@_stats?.TotalProfiles</div>
+                        </div>
+                    </MudItem>
+                </MudGrid>
+            </MudTabPanel>
+
+            <MudTabPanel Text="Пользователи" Icon="@Icons.Material.Outlined.People">
+                <MudTable Items="@_users" Hover="true" Striped="true"
+                          Loading="@_loadingUsers" Filter="new Func<AppUser, bool>(FilterUsers)">
+                    <ToolBarContent>
+                        <input class="search-box" @bind="_searchString" @bind:event="oninput" placeholder="Поиск по имени..." />
+                    </ToolBarContent>
+                    <HeaderContent>
+                        <MudTh>Пользователь</MudTh>
+                        <MudTh>Роль</MudTh>
+                        <MudTh>Статус</MudTh>
+                        <MudTh>Действия</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>
+                            <MudLink Href="@($"/profile/{context.Id}")" Typo="Typo.body2" Style="font-weight:600;">
+                                @(context.DisplayName ?? context.UserName)
+                            </MudLink>
+                        </MudTd>
+                        <MudTd>
+                            @if (context.UserName == "admin")
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Error">Гл. админ</MudChip>
+                            }
+                            else if (_adminIds.Contains(context.Id))
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Primary">Админ</MudChip>
+                            }
+                            else
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Success">Пользователь</MudChip>
+                            }
+                        </MudTd>
+                        <MudTd>
+                            <MudChip T="string" Size="Size.Small"
+                                     Color="@(context.LockoutEnd > DateTimeOffset.UtcNow ? Color.Error : Color.Success)">
+                                @(context.LockoutEnd > DateTimeOffset.UtcNow ? "Забанен" : "Активен")
+                            </MudChip>
+                        </MudTd>
+                        <MudTd>
+                            @if (context.UserName != "admin" && (_isSuperAdmin || !_adminIds.Contains(context.Id)))
+                            {
+                                @if (_isSuperAdmin)
+                                {
+                                    <MudTooltip Text="Выдать/снять админа">
+                                        <MudIconButton Icon="@Icons.Material.Filled.AdminPanelSettings"
+                                                       Color="Color.Tertiary" Size="Size.Small"
+                                                       OnClick="@(() => ToggleAdminRole(context))" />
+                                    </MudTooltip>
+                                }
+                                <MudTooltip Text="Редактировать">
+                                    <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" Size="Size.Small"
+                                                   OnClick="@(() => OpenEditDialog(context))" />
+                                </MudTooltip>
+                                <MudTooltip Text="Сбросить пароль">
+                                    <MudIconButton Icon="@Icons.Material.Filled.Key" Color="Color.Warning" Size="Size.Small"
+                                                   OnClick="@(() => ResetPassword(context))" />
+                                </MudTooltip>
+                                <MudTooltip Text="@(context.LockoutEnd > DateTimeOffset.UtcNow ? "Разблокировать" : "Заблокировать")">
+                                    @if (context.LockoutEnd > DateTimeOffset.UtcNow)
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Filled.LockOpen" Color="Color.Success" Size="Size.Small"
+                                                       OnClick="@(() => ToggleUserLock(context))" />
+                                    }
+                                    else
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Filled.Block" Color="Color.Error" Size="Size.Small"
+                                                       OnClick="@(() => ToggleUserLock(context))" />
+                                    }
+                                </MudTooltip>
+                                <MudTooltip Text="Удалить">
+                                    <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small"
+                                                   OnClick="@(() => DeleteUser(context))" />
+                                </MudTooltip>
+                            }
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudTabPanel>
+
+            <MudTabPanel Text="Новости" Icon="@Icons.Material.Outlined.Newspaper">
+                <button class="btn-green" @onclick="OpenAddNewsDialog" style="margin-bottom:16px;">+ Добавить новость</button>
+                <MudTable Items="@_news" Hover="true" Striped="true" Loading="@_loadingNews">
+                    <HeaderContent>
+                        <MudTh>Заголовок</MudTh>
+                        <MudTh>Категория</MudTh>
+                        <MudTh>Источник</MudTh>
+                        <MudTh>Дата</MudTh>
+                        <MudTh></MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.Title</MudTd>
+                        <MudTd>@context.Category</MudTd>
+                        <MudTd>@context.Source</MudTd>
+                        <MudTd>@AdminService.FormatLocalTime(context.PublishedAt)</MudTd>
+                        <MudTd>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small"
+                                           OnClick="@(() => DeleteNews(context))" />
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudTabPanel>
+
+            <MudTabPanel Text="Апелляции" Icon="@Icons.Material.Outlined.Gavel">
+                <MudTable Items="@_appeals" Hover="true" Striped="true" Loading="@_loadingAppeals">
+                    <HeaderContent>
+                        <MudTh>Пользователь</MudTh>
+                        <MudTh>Причина бана</MudTh>
+                        <MudTh>Текст апелляции</MudTh>
+                        <MudTh>Дата</MudTh>
+                        <MudTh>Статус</MudTh>
+                        <MudTh>Действия</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>
+                            <MudLink Href="@($"/profile/{context.UserId}")" Typo="Typo.body2" Style="font-weight:600;">
+                                @context.UserName
+                            </MudLink>
+                        </MudTd>
+                        <MudTd>@context.BanReason</MudTd>
+                        <MudTd Style="max-width:280px;word-break:break-word;">@context.AppealText</MudTd>
+                        <MudTd>@AdminService.FormatLocalTime(context.CreatedAt)</MudTd>
+                        <MudTd>
+                            <MudChip T="string" Size="Size.Small" Color="@GetAppealStatusColor(context.Status)">
+                                @GetAppealStatusText(context.Status)
+                            </MudChip>
+                        </MudTd>
+                        <MudTd>
+                            @if (context.Status == BanAppealStatus.NotReviewed)
+                            {
+                                <MudIconButton Icon="@Icons.Material.Filled.Check" Color="Color.Success" Size="Size.Small"
+                                               OnClick="@(() => ApproveAppeal(context))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Close" Color="Color.Error" Size="Size.Small"
+                                               OnClick="@(() => RejectAppeal(context))" />
+                            }
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudTabPanel>
+
+            <MudTabPanel Text="Логи" Icon="@Icons.Material.Outlined.History">
+                <MudTable Items="@_logs" Hover="true" Striped="true" Loading="@_loadingLogs">
+                    <HeaderContent>
+                        <MudTh>Админ</MudTh>
+                        <MudTh>Действие</MudTh>
+                        <MudTh>Цель</MudTh>
+                        <MudTh>Детали</MudTh>
+                        <MudTh>Дата</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.AdminName</MudTd>
+                        <MudTd>@context.Action</MudTd>
+                        <MudTd>@context.TargetUserName</MudTd>
+                        <MudTd>@context.Details</MudTd>
+                        <MudTd>@AdminService.FormatLocalTime(context.Timestamp)</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudTabPanel>
+        </MudTabs>
+    </MudContainer>
+</div>
+
+@code {
+    private List<AppUser> _users = new();
+    private List<BanAppeal> _appeals = new();
+    private List<AdminLog> _logs = new();
+    private List<NewsItem> _news = new();
+    private AdminStats? _stats;
+    private bool _loadingUsers, _loadingAppeals, _loadingLogs, _loadingNews;
+    private string _searchString = "";
+    private bool _isSuperAdmin;
+    private bool _isAdmin;
+    private HashSet<string> _adminIds = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthStateProvider.GetAuthenticationStateAsync();
+        var currentUserId = state.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var currentUser = await AdminService.GetUserByIdAsync(currentUserId);
+
+        _isSuperAdmin = currentUser?.UserName == "admin";
+        _isAdmin = await AdminService.IsAdminAsync(currentUserId!);
+
+        await LoadAll();
+    }
+
+    private async Task LoadAll()
+    {
+        _loadingUsers = _loadingAppeals = _loadingLogs = _loadingNews = true;
+        StateHasChanged();
+        try
+        {
+            _users = await AdminService.GetUsersAsync();
+            _appeals = await AdminService.GetBanAppealsAsync();
+            _logs = await AdminService.GetLogsAsync();
+            _news = await AdminService.GetAllNewsAsync();
+            _stats = await AdminService.GetStatsAsync();
+
+            var admins = await AdminService.GetAdminsAsync();
+            _adminIds = admins.Select(a => a.Id).ToHashSet();
+        }
+        catch (Exception ex) { Snackbar.Add($"Ошибка: {ex.Message}", Severity.Error); }
+        finally
+        {
+            _loadingUsers = _loadingAppeals = _loadingLogs = _loadingNews = false;
+            StateHasChanged();
+        }
+    }
+
+    private bool FilterUsers(AppUser user)
+    {
+        if (string.IsNullOrWhiteSpace(_searchString)) return true;
+        return (user.DisplayName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            || (user.UserName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true);
+    }
+
+    private async Task<string> GetCurrentUserId()
+    {
+        var state = await AuthStateProvider.GetAuthenticationStateAsync();
+        return state.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
+    }
+
+    private async Task ToggleAdminRole(AppUser user)
+    {
+        if (!_isSuperAdmin) { Snackbar.Add("Только главный админ может выдавать роли", Severity.Error); return; }
+        if (user.UserName == "admin") { Snackbar.Add("Нельзя изменить роль главного админа", Severity.Error); return; }
+
+        var result = await AdminService.ToggleAdminAsync(user.Id, await GetCurrentUserId());
+        Snackbar.Add(result ? $"Роль администратора изменена для {user.UserName}" : "Ошибка",
+                     result ? Severity.Success : Severity.Error);
+        await LoadAll();
+    }
+
+    private async Task ToggleUserLock(AppUser user)
+    {
+        if (user.UserName == "admin") { Snackbar.Add("Нельзя заблокировать главного админа", Severity.Error); return; }
+        if (!_isSuperAdmin && _adminIds.Contains(user.Id)) { Snackbar.Add("Нельзя заблокировать администратора", Severity.Error); return; }
+
+        var cid = await GetCurrentUserId();
+        if (user.LockoutEnd > DateTimeOffset.UtcNow)
+        {
+            await AdminService.ToggleLockoutAsync(user.Id, cid, "Admin", "");
+            Snackbar.Add($"Пользователь {user.UserName} разблокирован", Severity.Success);
+        }
+        else
+        {
+            var d = await DialogService.ShowAsync<BanReasonDialog>("Блокировка", new DialogParameters());
+            var r = await d.Result;
+            if (!r!.Canceled && r.Data is string reason && !string.IsNullOrWhiteSpace(reason))
+            {
+                await AdminService.ToggleLockoutAsync(user.Id, cid, "Admin", reason);
+                Snackbar.Add($"Пользователь {user.UserName} заблокирован", Severity.Success);
+            }
+        }
+        await LoadAll();
+    }
+
+    private async Task OpenEditDialog(AppUser user)
+    {
+        if (!_isSuperAdmin && _adminIds.Contains(user.Id)) { Snackbar.Add("Нельзя редактировать администратора", Severity.Error); return; }
+
+        var d = await DialogService.ShowAsync<EditUserDialog>("Редактирование", new DialogParameters { ["User"] = user });
+        var r = await d.Result;
+        if (!r!.Canceled && r.Data != null)
+        {
+            dynamic data = r.Data;
+            await AdminService.UpdateUserDisplayNameAsync(user.Id, data.DisplayName ?? "", await GetCurrentUserId());
+            Snackbar.Add("Пользователь обновлён", Severity.Success);
+            await LoadAll();
+        }
+    }
+
+    private async Task ResetPassword(AppUser user)
+    {
+        if (!_isSuperAdmin && _adminIds.Contains(user.Id)) { Snackbar.Add("Нельзя сбросить пароль администратору", Severity.Error); return; }
+
+        var d = await DialogService.ShowAsync<ResetPasswordDialog>("Сброс пароля");
+        var r = await d.Result;
+        if (!r!.Canceled && r.Data is string np)
+        {
+            var res = await AdminService.ResetUserPasswordAsync(user.Id, np, await GetCurrentUserId());
+            Snackbar.Add(res.Success ? "Пароль сброшен" : res.Error, res.Success ? Severity.Success : Severity.Error);
+        }
+    }
+
+    private async Task DeleteUser(AppUser user)
+    {
+        if (user.UserName == "admin") { Snackbar.Add("Нельзя удалить главного админа", Severity.Error); return; }
+        if (!_isSuperAdmin && _adminIds.Contains(user.Id)) { Snackbar.Add("Нельзя удалить администратора", Severity.Error); return; }
+
+        var d = await DialogService.ShowAsync<ConfirmDialog>("Подтверждение", new DialogParameters
+        {
+            ["ContentText"] = $"Удалить {user.DisplayName ?? user.UserName}?",
+            ["ButtonText"] = "Удалить",
+            ["Color"] = Color.Error
+        });
+        if (!(await d.Result)!.Canceled)
+        {
+            var res = await AdminService.DeleteUserAsync(user.Id, await GetCurrentUserId());
+            Snackbar.Add(res.Success ? $"Пользователь {user.UserName} удалён" : res.Error, res.Success ? Severity.Success : Severity.Error);
+            if (res.Success) await LoadAll();
+        }
+    }
+
+    private Color GetAppealStatusColor(BanAppealStatus status) => status switch
+    {
+        BanAppealStatus.NotReviewed => Color.Warning,
+        BanAppealStatus.ReviewedUnbanned => Color.Success,
+        BanAppealStatus.ReviewedRejected => Color.Error,
+        _ => Color.Default
+    };
+
+    private string GetAppealStatusText(BanAppealStatus status) => status switch
+    {
+        BanAppealStatus.NotReviewed => "Не рассмотрено",
+        BanAppealStatus.ReviewedUnbanned => "Рассмотрено / Разблокирован",
+        BanAppealStatus.ReviewedRejected => "Рассмотрено / Не разблокирован",
+        _ => "Неизвестно"
+    };
+
+    private async Task ApproveAppeal(BanAppeal appeal)
+    {
+        await AdminService.ApproveAppealAsync(appeal.Id);
+        Snackbar.Add($"Апелляция {appeal.UserName} одобрена, пользователь разблокирован", Severity.Success);
+        await LoadAll();
+    }
+
+    private async Task RejectAppeal(BanAppeal appeal)
+    {
+        await AdminService.RejectAppealAsync(appeal.Id);
+        Snackbar.Add($"Апелляция {appeal.UserName} отклонена", Severity.Info);
+        await LoadAll();
+    }
+
+    private async Task OpenAddNewsDialog()
+    {
+        var d = await DialogService.ShowAsync<AddNewsDialog>("Добавить новость");
+        var r = await d.Result;
+        if (!r!.Canceled && r.Data is NewsItem news)
+        {
+            await AdminService.AddNewsAsync(news);
+            Snackbar.Add("Новость добавлена", Severity.Success);
+            await LoadAll();
+        }
+    }
+
+    private async Task DeleteNews(NewsItem news)
+    {
+        await AdminService.DeleteNewsAsync(news.Id);
+        Snackbar.Add("Новость удалена", Severity.Success);
+        await LoadAll();
+    }
+}

@@ -1,0 +1,42 @@
+﻿@using DarkPortal.Models
+@using DarkPortal.Services
+@inject AdminService AdminService
+
+@if (Ban != null)
+{
+    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="mb-4">
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Block" Class="mr-2" />
+            🚫 Пользователь заблокирован
+        </MudText>
+        <MudDivider Class="my-2" />
+        <MudText>
+            <strong>Причина:</strong> @Ban.Reason
+        </MudText>
+        <MudText>
+            <strong>Администратор:</strong> @Ban.AdminName
+        </MudText>
+        <MudText>
+            <strong>Дата блокировки:</strong> @FormatLocalTime(Ban.BannedAt)
+        </MudText>
+        @if (Ban.UnbannedAt.HasValue)
+        {
+            <MudText>
+                <strong>Дата разблокировки:</strong> @FormatLocalTime(Ban.UnbannedAt.Value)
+            </MudText>
+        }
+    </MudAlert>
+}
+
+@code {
+    [Parameter]
+    public BanRecord? Ban { get; set; }
+
+    // ========== ФИКС ВРЕМЕНИ ==========
+    private string FormatLocalTime(DateTime utcTime)
+    {
+        // Для МСК (UTC+3)
+        var localTime = utcTime.AddHours(3);
+        return localTime.ToString("dd.MM.yyyy HH:mm");
+    }
+}

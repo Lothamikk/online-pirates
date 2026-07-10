@@ -1,0 +1,186 @@
+﻿@page "/lessons"
+@rendermode InteractiveServer
+@using DarkPortal.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject LessonService LessonService
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<PageTitle>Уроки — Online Pirates</PageTitle>
+
+<style>
+    .lessons-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .lesson-card {
+        background: #181C24;
+        border: 1px solid #374151;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .lesson-card:hover {
+            box-shadow: 0 8px 12px -2px rgba(0,0,0,0.4);
+            border-color: rgba(46,139,87,0.3);
+            transform: translateY(-2px);
+        }
+
+        .lesson-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+            .lesson-card.locked:hover {
+                transform: none;
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            }
+
+    .lesson-number {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: #A5B0BB;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+    }
+
+    .lesson-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .lesson-title {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        font-weight: 600;
+        color: #E5E7EB;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+
+    .lesson-progress {
+        height: 3px;
+        background: #374151;
+        border-radius: 2px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+
+    .lesson-progress-fill {
+        height: 100%;
+        background: #2E8B57;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+
+    .lesson-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+    }
+
+    .badge-done {
+        background: rgba(46,139,87,0.2);
+        color: #2E8B57;
+        border: 1px solid rgba(46,139,87,0.3);
+    }
+
+    .badge-locked {
+        background: rgba(239,68,68,0.15);
+        color: #EF4444;
+        border: 1px solid rgba(239,68,68,0.3);
+    }
+</style>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-6">
+    <MudText Typo="Typo.h4" Style="font-family:'JetBrains Mono',monospace;color:#E5E7EB;text-shadow:0 0 8px rgba(0,200,83,0.2);" Class="mb-2">Уроки</MudText>
+    <MudText Style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A5B0BB;text-transform:uppercase;letter-spacing:0.1em;" Class="mb-4">Путь к анонимности</MudText>
+
+    <div class="lessons-grid">
+        @foreach (var lesson in _lessons)
+        {
+            <div class="lesson-card @(!lesson.CanAccess ? "locked" : "")"
+                 @onclick="@(() => { if (lesson.CanAccess) Navigation.NavigateTo($"/learn/{lesson.Id}"); })">
+                @if (lesson.Completed)
+                {
+                    <span class="lesson-badge badge-done">ПРОЙДЕН</span>
+                }
+                else if (!lesson.CanAccess)
+                {
+                    <span class="lesson-badge badge-locked">ЗАКРЫТ</span>
+                }
+                <div class="lesson-number">УРОК @lesson.Order</div>
+                <div class="lesson-icon">@lesson.Icon</div>
+                <div class="lesson-title">@lesson.Title</div>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" style="width:@(lesson.Completed ? "100%" : "0%");"></div>
+                </div>
+            </div>
+        }
+    </div>
+</MudContainer>
+
+@code {
+    private List<LessonItem> _lessons = new();
+    private string _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = state.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
+
+        var allLessons = new (string Id, string Title, string Icon, int Order)[]
+        {
+            ("data-is-oil", "Кто ты в мире анонимности?", "🛡️", 1),
+            ("browser-wars", "Твой браузер — твой главный защитник", "🔐", 2),
+            ("vpn-mask", "VPN — твой первый щит", "🌐", 3),
+            ("onion-layer", "Tor и луковая маршрутизация", "🧅", 4),
+            ("darknet", "Мифы и правда о даркнете", "🌑", 5),
+            ("pgp", "PGP — шифрование для всех", "🔑", 6),
+            ("simswap", "SIM-swap — как не потерять всё", "📱", 7),
+            ("phishing", "Фишинг — научись видеть обман", "🎣", 8),
+            ("crypto-lesson", "Криптовалюта и анонимность", "💰", 9),
+            ("opsec", "Твоя цифровая крепость", "🛡️", 10)
+        };
+
+        foreach (var l in allLessons)
+        {
+            var completed = string.IsNullOrEmpty(_userId) ? false : await LessonService.IsLessonCompleted(_userId, l.Id);
+            var canAccess = string.IsNullOrEmpty(_userId) ? false : await LessonService.CanAccessLesson(_userId, l.Id);
+
+            _lessons.Add(new LessonItem
+            {
+                Id = l.Id,
+                Title = l.Title,
+                Icon = l.Icon,
+                Order = l.Order,
+                Completed = completed,
+                CanAccess = canAccess || completed
+            });
+        }
+    }
+
+    private class LessonItem
+    {
+        public string Id { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string Icon { get; set; } = "";
+        public int Order { get; set; }
+        public bool Completed { get; set; }
+        public bool CanAccess { get; set; }
+    }
+}

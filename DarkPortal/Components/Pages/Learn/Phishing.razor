@@ -1,0 +1,40 @@
+﻿@page "/learn/phishing"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🎣 Урок 8: Фишинг — научись видеть обман</MudText>
+<MudAlert Severity="Severity.Error" Class="mt-4 mb-4">90% взломов начинаются с фишинга.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">📖 Признаки фишинга</MudText><MudText Typo="Typo.body1">Срочность, подмена URL, ошибки в тексте, запрос пароля.</MudText></MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">🧪 Тест: какой URL настоящий?</MudText><MudRadioGroup T="string" @bind-Value="_test" Class="mt-2"><MudRadio T="string" Value="@("a")" Color="Color.Error">paypaI.com</MudRadio><MudRadio T="string" Value="@("b")" Color="Color.Success">paypal.com</MudRadio><MudRadio T="string" Value="@("c")" Color="Color.Error">paypal-secure.com</MudRadio></MudRadioGroup>@if (_test == "b"){
+    <MudAlert Severity="Severity.Success" Class="mt-2">✅ Правильно!</MudAlert>
+}
+@if (_test == "a" || _test == "c")
+{
+    <MudAlert Severity="Severity.Error" Class="mt-2">❌ Это фишинг!</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private string _test = "", _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "phishing")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "phishing");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

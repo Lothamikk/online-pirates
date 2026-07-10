@@ -1,0 +1,286 @@
+﻿@page "/forum/{Id:int}"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.ForumService ForumService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+@using Microsoft.AspNetCore.Identity
+@inject ISnackbar Snackbar
+@inject DarkPortal.Services.AntiSpamService AntiSpam
+@inject DarkPortal.Services.ProfileService ProfileService
+@inject DarkPortal.Services.AchievementService AchievementService
+@inject DarkPortal.Services.AdminService AdminService
+@inject IDialogService DialogService
+@inject UserManager<DarkPortal.Models.AppUser> UserManager
+
+@if (_topic == null)
+{
+    <MudAlert Severity="Severity.Error">Тема не найдена.</MudAlert>
+}
+else
+{
+    <MudButton Variant="Variant.Text" Href="/forum" StartIcon="@Icons.Material.Filled.ArrowBack" Class="mb-4">← Назад к темам</MudButton>
+    <MudCard Elevation="4" Class="mb-4" Style="@($"border:1px solid {(_isDarkMode ? "#444" : "#ddd")};")">
+        <MudCardContent Style="padding:20px 24px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <MudText Typo="Typo.h4" Color="Color.Primary" Style="font-weight:800;">
+                    @if (_topic.IsPinned)
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.PushPin" Size="Size.Small" Color="Color.Warning" />
+                    }
+                    @_topic.Title
+                </MudText>
+                <div style="display:flex;gap:4px;">
+                    @if (_isAdmin)
+                    {
+                        <MudIconButton Icon="@Icons.Material.Filled.PushPin" Size="Size.Small" Color="Color.Warning" OnClick="TogglePin" />
+                    }
+                    @if (_isAdmin)
+                    {
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="ConfirmDeleteTopic" />
+                    }
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap;">
+                @if (!string.IsNullOrEmpty(_topicAuthorAvatar))
+                {
+                    <img src="@_topicAuthorAvatar" style="width:24px;height:24px;border-radius:50%;object-fit:cover;vertical-align:middle;" />
+                }
+                else
+                {
+                    <span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1565C0,#0D47A1);color:white;text-align:center;line-height:24px;font-size:13px;font-weight:bold;vertical-align:middle;">@(_topic.AuthorName?.FirstOrDefault().ToString().ToUpper() ?? "?")</span>
+                }
+                <MudLink Href="@($"/profile/{_topic.AuthorId}")" Typo="Typo.body1" Style="@_topicAuthorStyle">
+                    @_topic.AuthorName
+                </MudLink>
+
+                @if (_topicAuthorRoles.Contains("Admin"))
+                {
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+                        color:@(_topicAuthorIsChief ? "#EF4444" : "#60A5FA");
+                        background:@(_topicAuthorIsChief ? "rgba(239,68,68,0.15)" : "rgba(96,165,250,0.15)");
+                        border:1px solid @(_topicAuthorIsChief ? "rgba(239,68,68,0.3)" : "rgba(96,165,250,0.3)");
+                        padding:2px 8px;border-radius:12px;letter-spacing:0.05em;">
+                        @(_topicAuthorIsChief ? "CHIEF ADMIN" : "ADMIN")
+                    </span>
+                }
+
+                @if (!string.IsNullOrEmpty(_topicAuthorBadge))
+                {
+                    <MudChip T="string" Size="Size.Small" Color="Color.Warning" Icon="@_topicAuthorBadgeIcon" Style="font-size:0.7rem;height:18px;">@_topicAuthorBadge</MudChip>
+                }
+                <MudChip T="string" Size="Size.Small" Color="Color.Secondary">@_topic.Section</MudChip>
+                <span style="color:#888;font-size:0.85rem;">@_topic.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+            <MudDivider Class="my-4" />
+            <div style="font-size:1rem;line-height:1.7;white-space:pre-wrap;">@ParseContent(_topic.Content)</div>
+        </MudCardContent>
+    </MudCard>
+
+    <MudText Typo="Typo.h6" Class="mb-3" Style="font-weight:700;">💬 Ответы (@_topic.Replies.Count)</MudText>
+
+    @foreach (var item in _topic.Replies.Select((r, i) => new { r, i }))
+    {
+        var replyRoles = _replyRoles.GetValueOrDefault(item.r.Id, new List<string>());
+        var replyIsChief = _replyIsChief.GetValueOrDefault(item.r.Id, false);
+
+        <MudPaper Elevation="2" Class="pa-4 mb-3 ml-0 ml-md-4" Style="@($"border-left:3px solid #555;border-radius:8px;background:{(item.i % 2 == 0 ? (_isDarkMode ? "#1e1e1e" : "#f5f5f5") : "transparent")};")">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div style="font-size:0.95rem;line-height:1.6;white-space:pre-wrap;">@ParseContent(item.r.Content)</div>
+                @if (_isAdmin)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="() => DeleteReply(item.r.Id)" />
+                }
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;">
+                @if (!string.IsNullOrEmpty(_replyAvatars.GetValueOrDefault(item.r.Id)))
+                {
+                    <img src="@_replyAvatars[item.r.Id]" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;" />
+                }
+                else
+                {
+                    <span style="display:inline-block;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#1565C0,#0D47A1);color:white;text-align:center;line-height:20px;font-size:11px;font-weight:bold;vertical-align:middle;">@(item.r.AuthorName?.FirstOrDefault().ToString().ToUpper() ?? "?")</span>
+                }
+                <MudLink Href="@($"/profile/{item.r.AuthorId}")" Typo="Typo.body2" Style="@GetReplyStyle(replyIsChief, replyRoles)">
+                    @item.r.AuthorName
+                </MudLink>
+
+                @if (replyRoles.Contains("Admin"))
+                {
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;
+                        color:@(replyIsChief ? "#EF4444" : "#60A5FA");
+                        background:@(replyIsChief ? "rgba(239,68,68,0.15)" : "rgba(96,165,250,0.15)");
+                        border:1px solid @(replyIsChief ? "rgba(239,68,68,0.3)" : "rgba(96,165,250,0.3)");
+                        padding:1px 6px;border-radius:10px;letter-spacing:0.05em;">
+                        @(replyIsChief ? "CHIEF ADMIN" : "ADMIN")
+                    </span>
+                }
+
+                <span style="color:#888;font-size:0.8rem;">@item.r.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+        </MudPaper>
+    }
+
+    @if (_isLoggedIn)
+    {
+        <MudCard Elevation="4" Class="mt-4" Style="@($"border:1px solid {(_isDarkMode ? "#444" : "#ddd")};")">
+            <MudCardContent>
+                <MudText Typo="Typo.h6" Style="font-weight:700;">Твой ответ</MudText>
+                <div style="display:flex;gap:6px;margin-top:8px;">
+                    <MudIconButton Icon="@Icons.Material.Filled.FormatBold" Size="Size.Small" OnClick="InsertReplyBold" />
+                    <MudIconButton Icon="@Icons.Material.Filled.FormatItalic" Size="Size.Small" OnClick="InsertReplyItalic" />
+                    <MudIconButton Icon="@Icons.Material.Filled.FormatUnderlined" Size="Size.Small" OnClick="InsertReplyUnderline" />
+                    <MudIconButton Icon="@Icons.Material.Filled.FormatSize" Size="Size.Small" OnClick="InsertReplyBig" />
+                    <MudIconButton Icon="@Icons.Material.Filled.StrikethroughS" Size="Size.Small" OnClick="InsertReplyStrike" />
+                </div>
+                <div class="mt-2" style="border:1px solid #555;border-radius:8px;padding:4px;">
+                    <MudTextField T="string" @bind-Value="_replyContent" Label="Напиши ответ..." Variant="Variant.Text" Lines="3" MaxLength="@_maxReplyLength" HelperText="@($"{_replyContent.Length}/{_maxReplyLength}")" Immediate="true" Style="font-family:inherit;" />
+                </div>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddReply" Disabled="@(string.IsNullOrWhiteSpace(_replyContent) || _replyContent.Length > _maxReplyLength)" StartIcon="@Icons.Material.Filled.Send">Отправить</MudButton>
+            </MudCardActions>
+        </MudCard>
+    }
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private DarkPortal.Models.ForumTopic? _topic;
+    private bool _isLoggedIn, _isDarkMode = true, _isAdmin;
+    private string _userId = "", _authorName = "", _replyContent = "", _topicAuthorAvatar = "", _topicAuthorBadge = "", _topicAuthorBadgeIcon = "";
+    private bool _topicAuthorIsChief;
+    private List<string> _topicAuthorRoles = new();
+    private int _maxReplyLength = 500;
+    private Dictionary<int, string> _replyAvatars = new();
+    private Dictionary<int, List<string>> _replyRoles = new();
+    private Dictionary<int, bool> _replyIsChief = new();
+    private string _topicAuthorStyle => $"font-weight:700;color:{(_topicAuthorIsChief ? "#EF4444" : _topicAuthorRoles.Contains("Admin") ? "#60A5FA" : "var(--mud-palette-primary)")}";
+
+    private string GetReplyStyle(bool isChief, List<string> roles) => $"font-weight:700;color:{(isChief ? "#EF4444" : roles.Contains("Admin") ? "#60A5FA" : "var(--mud-palette-primary)")}";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _isLoggedIn = a.User.Identity?.IsAuthenticated == true;
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        _authorName = a.User.Identity?.Name ?? "";
+        _isAdmin = await ForumService.IsAdminAsync(_userId);
+        _maxReplyLength = _isAdmin ? 2000 : 500;
+        _topic = await ForumService.GetTopicAsync(Id);
+
+        if (_topic != null)
+        {
+            var topicUser = await AdminService.GetUserByIdAsync(_topic.AuthorId);
+            if (topicUser != null)
+            {
+                var roles = await UserManager.GetRolesAsync(topicUser);
+                _topicAuthorRoles = roles.ToList();
+                _topicAuthorIsChief = topicUser.UserName == "admin";
+            }
+
+            var u = await ProfileService.GetUserProfileAsync(_topic.AuthorId);
+            _topicAuthorAvatar = u?.AvatarUrl ?? "";
+
+            if (!string.IsNullOrEmpty(u?.PinnedBadge))
+            {
+                var badge = (await AchievementService.GetAchievements(_topic.AuthorId)).FirstOrDefault(a => a.Id == u.PinnedBadge);
+                if (badge != null)
+                {
+                    _topicAuthorBadge = badge.Name;
+                    _topicAuthorBadgeIcon = badge.Icon;
+                }
+            }
+
+            foreach (var r in _topic.Replies)
+            {
+                if (!_replyAvatars.ContainsKey(r.Id))
+                {
+                    var ru = await ProfileService.GetUserProfileAsync(r.AuthorId);
+                    _replyAvatars[r.Id] = ru?.AvatarUrl ?? "";
+
+                    var replyUser = await AdminService.GetUserByIdAsync(r.AuthorId);
+                    if (replyUser != null)
+                    {
+                        var roles = await UserManager.GetRolesAsync(replyUser);
+                        _replyRoles[r.Id] = roles.ToList();
+                        _replyIsChief[r.Id] = replyUser.UserName == "admin";
+                    }
+                }
+            }
+        }
+    }
+
+    private void InsertReplyBold() => _replyContent += "<b></b>";
+    private void InsertReplyItalic() => _replyContent += "<i></i>";
+    private void InsertReplyUnderline() => _replyContent += "<u></u>";
+    private void InsertReplyBig() => _replyContent += "<big></big>";
+    private void InsertReplyStrike() => _replyContent += "<s></s>";
+
+    private MarkupString ParseContent(string t)
+    {
+        if (string.IsNullOrEmpty(t)) return new MarkupString("");
+        t = System.Net.WebUtility.HtmlEncode(t);
+        t = t.Replace("&lt;b&gt;", "<b>").Replace("&lt;/b&gt;", "</b>");
+        t = t.Replace("&lt;i&gt;", "<i>").Replace("&lt;/i&gt;", "</i>");
+        t = t.Replace("&lt;u&gt;", "<u>").Replace("&lt;/u&gt;", "</u>");
+        t = t.Replace("&lt;big&gt;", "<span style=\"font-size:1.3em;\">").Replace("&lt;/big&gt;", "</span>");
+        t = t.Replace("&lt;s&gt;", "<s>").Replace("&lt;/s&gt;", "</s>");
+        return new MarkupString(t);
+    }
+
+    private async Task AddReply()
+    {
+        if (string.IsNullOrWhiteSpace(_replyContent)) return;
+
+        var c = await AntiSpam.CheckSpamAsync(_userId, _replyContent);
+        if (c.IsBlocked)
+        {
+            Snackbar.Add(c.Message, Severity.Error);
+            return;
+        }
+        if (c.IsSpam)
+        {
+            _replyContent = "";
+            StateHasChanged();
+            return;
+        }
+
+        await ForumService.AddReplyAsync(Id, _replyContent, _userId, _authorName);
+        _replyContent = "";
+        _topic = await ForumService.GetTopicAsync(Id);
+        StateHasChanged();
+    }
+
+    private async Task TogglePin()
+    {
+        await ForumService.TogglePinAsync(Id);
+        _topic = await ForumService.GetTopicAsync(Id);
+        StateHasChanged();
+    }
+
+    private async Task DeleteReply(int rid)
+    {
+        await ForumService.DeleteReplyAsync(rid);
+        _topic = await ForumService.GetTopicAsync(Id);
+        StateHasChanged();
+    }
+
+    private async Task ConfirmDeleteTopic()
+    {
+        var parameters = new DialogParameters
+        {
+            ["Title"] = "Удаление темы",
+            ["Message"] = "Вы уверены, что хотите удалить эту тему? Все ответы будут потеряны.",
+            ["YesText"] = "Удалить",
+            ["CancelText"] = "Отмена"
+        };
+        var dialog = await DialogService.ShowAsync<MudMessageBox>("", parameters);
+        var result = await dialog.Result;
+        dialog.Close();
+        if (result?.Data as bool? == true)
+        {
+            await ForumService.DeleteTopicAsync(Id);
+            Navigation.NavigateTo("/forum", forceLoad: true);
+        }
+    }
+}

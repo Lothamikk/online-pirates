@@ -1,0 +1,31 @@
+﻿@using MudBlazor
+@using DarkPortal.Models
+
+<MudDialog>
+    <DialogContent>
+        <MudText>Разблокировано: <b>@AchievementCount из @Achievements.Count</b></MudText>
+        <MudDivider Class="my-3" />
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            @foreach (var a in Achievements)
+            {
+                <MudChip T="string" Color="@(a.Unlocked ? Color.Success : Color.Default)" Size="Size.Small"
+                         Style="@(a.Unlocked ? "" : "opacity:0.5;")" Icon="@(a.Unlocked ? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.Lock)">
+                    @a.Name
+                </MudChip>
+            }
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close">Закрыть</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public List<Achievement> Achievements { get; set; } = new();
+    [Parameter] public int AchievementCount { get; set; }
+
+    private void Close() => MudDialog.Close();
+}

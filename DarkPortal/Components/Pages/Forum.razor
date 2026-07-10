@@ -1,0 +1,174 @@
+﻿@page "/forum"
+@rendermode InteractiveServer
+@using DarkPortal.Models
+@inject DarkPortal.Services.ForumService ForumService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject IServiceProvider ServiceProvider
+@inject DarkPortal.Services.LocalStorageService LocalStorage
+@inject DarkPortal.Services.AntiSpamService AntiSpam
+@inject DarkPortal.Services.ProfileService ProfileService
+@inject DarkPortal.Services.AchievementService AchievementService
+@inject IDialogService DialogService
+
+<MudText Typo="Typo.h3" Color="Color.Primary" Class="mb-2" Style="font-weight:800;letter-spacing:-1px;"><MudIcon Icon="@Icons.Material.Filled.Forum" Size="Size.Large" /> Форум</MudText>
+<MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">Обсуждай кибербезопасность, анонимность и технологии</MudText>
+
+<div class="mb-4" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <MudChipSet T="string" Filter="true">
+        <MudChip T="string" Text="Все" Selected="@(_selectedSection == null)" OnClick="() => SelectSection(null)" />
+        @foreach (var s in _sections)
+        {
+            <div style="display:inline-flex;align-items:center;gap:2px;">
+                <MudChip T="string" Text="@s.Name" Selected="@(_selectedSection == s.Name)" OnClick="() => SelectSection(s.Name)" />
+                @if (_isSuperAdmin)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" Color="Color.Error" OnClick="() => DeleteSection(s.Id)" Style="padding:0;margin-left:-8px;" />
+                }
+            </div>
+        }
+    </MudChipSet>
+    @if (_isSuperAdmin)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.Add" Size="Size.Small" Color="Color.Success" OnClick="ToggleAddSection" Title="Добавить раздел" />
+    }
+</div>
+
+@if (_isSuperAdmin && _showAddSection)
+{
+    <MudPaper Elevation="3" Class="pa-3 mb-4">
+        <MudTextField T="string" @bind-Value="_newSectionName" Label="Название раздела" Variant="Variant.Outlined" Immediate="true" />
+        <MudButton Color="Color.Success" OnClick="AddSection" Class="mt-2">Добавить</MudButton>
+        <MudButton Color="Color.Default" OnClick="CancelAddSection" Class="mt-2 ml-2">Отмена</MudButton>
+    </MudPaper>
+}
+
+@if (!_isLoggedIn)
+{
+    <MudAlert Severity="Severity.Info" Class="mb-4">Войди, чтобы писать. <MudLink Href="/auth">Войти</MudLink></MudAlert>
+}
+
+@if (_isLoggedIn)
+{
+    @if (_cooldown > 0 && !_isAdmin)
+    {
+        <MudAlert Severity="Severity.Warning" Class="mb-4">Подожди @_cooldown сек. перед новой темой.</MudAlert>
+    }
+    else
+    {
+        <MudCard Elevation="5" Class="mb-6" Style="@($"border:1px solid {(_isDarkMode ? "#333" : "#ddd")};")">
+            <MudCardContent>
+                <MudText Typo="Typo.h6" Style="font-weight:700;">Создать новую тему</MudText>
+                <MudTextField T="string" @bind-Value="_newTitle" Label="Заголовок" Variant="Variant.Outlined" Class="mt-2" MaxLength="100" HelperText="@($"{_newTitle.Length}/100")" />
+                <div style="display:flex;gap:6px;margin-top:8px;"><MudIconButton Icon="@Icons.Material.Filled.FormatBold" Size="Size.Small" OnClick="InsertBold" /><MudIconButton Icon="@Icons.Material.Filled.FormatItalic" Size="Size.Small" OnClick="InsertItalic" /><MudIconButton Icon="@Icons.Material.Filled.FormatUnderlined" Size="Size.Small" OnClick="InsertUnderline" /><MudIconButton Icon="@Icons.Material.Filled.FormatSize" Size="Size.Small" OnClick="InsertBig" /><MudIconButton Icon="@Icons.Material.Filled.StrikethroughS" Size="Size.Small" OnClick="InsertStrike" /></div>
+                <div class="mt-2" style="@($"border:1px solid {(_isDarkMode ? "#555" : "#ccc")};border-radius:8px;padding:4px;")"><MudTextField T="string" @bind-Value="_newContent" Label="Содержание" Variant="Variant.Text" Lines="4" MaxLength="@_maxContentLength" HelperText="@($"{_newContent.Length}/{_maxContentLength}")" Immediate="true" Style="font-family:inherit;" /></div>
+                <MudSelect T="string" @bind-Value="_newSection" Label="Раздел" Variant="Variant.Outlined" Class="mt-2">
+                    @foreach (var s in _sections)
+                    {
+                        <MudSelectItem T="string" Value="@s.Name">@s.Name</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudCardContent>
+            <MudCardActions><MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="CreateTopic" Disabled="@(string.IsNullOrWhiteSpace(_newTitle) || string.IsNullOrWhiteSpace(_newContent) || _newContent.Length > _maxContentLength)" StartIcon="@Icons.Material.Filled.Send">Опубликовать</MudButton></MudCardActions>
+        </MudCard>
+    }
+}
+
+@if (_topics != null && _topics.Count > 0)
+{
+    @foreach (var item in _topics.Select((t, i) => new { t, i }))
+    {
+        var t = item.t; var idx = item.i;
+        <MudCard Elevation="@(t.IsPinned ? 6 : 3)" Class="mb-3" Style="@(t.IsPinned ? $"border-left:5px solid #ffaa00;border:1px solid {(_isDarkMode ? "#444" : "#ddd")};background:{(idx % 2 == 0 ? (_isDarkMode ? "#1a1a1a" : "#fafafa") : "transparent")};" : $"border:1px solid {(_isDarkMode ? "#333" : "#e0e0e0")};background:{(idx % 2 == 0 ? (_isDarkMode ? "#1a1a1a" : "#fafafa") : "transparent")};")">
+            <MudCardContent Style="padding:16px 20px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                    @if (t.IsPinned)
+                    {
+                        <MudChip T="string" Size="Size.Small" Color="Color.Warning">📌 Закреплено</MudChip>
+                    }
+                    <MudChip T="string" Size="Size.Small" Color="Color.Secondary">@t.Section</MudChip><MudChip T="string" Size="Size.Small" Color="Color.Info">💬 @t.Replies.Count</MudChip>
+                </div>
+                <MudText Typo="Typo.h6" Style="font-weight:700;font-size:1.1rem;"><MudLink Href="@($"/forum/{t.Id}")" Underline="Underline.Hover" Color="Color.Primary">@t.Title</MudLink></MudText>
+                <MudText Typo="Typo.body2" Class="mt-2" Style="@($"color:{(_isDarkMode ? "#bbb" : "#555")};")">@ParseContent(Truncate(t.Content, 180))</MudText>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+                    @if (!string.IsNullOrEmpty(_authorAvatars.GetValueOrDefault(t.AuthorId)))
+                    {
+                        <img src="@_authorAvatars[t.AuthorId]" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:4px;" />
+                    }
+                    else
+                    {
+
+                        <span style="display:inline-block;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#1565C0,#0D47A1);color:white;text-align:center;line-height:20px;font-size:11px;font-weight:bold;vertical-align:middle;margin-right:4px;">@(t.AuthorName?.FirstOrDefault().ToString().ToUpper() ?? "?")</span>
+                    }
+                    <MudLink Href="@($"/profile/{t.AuthorId}")" Typo="Typo.body2" Color="@_roleColors.GetValueOrDefault(t.AuthorId, Color.Primary)" Style="font-weight:700;font-size:0.95rem;">@t.AuthorName</MudLink>
+                    @if (!string.IsNullOrEmpty(_authorBadges.GetValueOrDefault(t.AuthorId)))
+                    {
+                        <MudChip T="string" Size="Size.Small" Color="Color.Warning" Icon="@_authorBadgeIcons.GetValueOrDefault(t.AuthorId)" Style="font-size:0.7rem;height:18px;">@_authorBadgeNames.GetValueOrDefault(t.AuthorId)</MudChip>
+                    }
+                    <span style="color:@(_isDarkMode ? "#888" : "#999");font-size:0.8rem;">@t.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                    @if (_isAdmin)
+                    {
+                        <MudIconButton Icon="@Icons.Material.Filled.PushPin" Size="Size.Small" Color="@(t.IsPinned ? Color.Warning : Color.Default)" OnClick="() => TogglePinFromList(t.Id)" Style="margin-left:auto;" /><MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="() => ConfirmDeleteTopicFromList(t.Id)" />
+                    }
+                </div>
+            </MudCardContent>
+        </MudCard>
+    }
+}
+else
+{
+    <MudPaper Elevation="2" Class="pa-4" Style="text-align:center;"><MudText Typo="Typo.h6" Color="Color.Secondary">Тем пока нет.</MudText></MudPaper>
+}
+
+@code {
+    private bool _isLoggedIn, _isDarkMode = true, _isAdmin, _isSuperAdmin, _showAddSection;
+    private string _userId = "", _authorName = "", _newSectionName = "";
+    private List<ForumSection> _sections = new(); private List<DarkPortal.Models.ForumTopic>? _topics;
+    private string _newTitle = "", _newContent = "", _newSection = "Общее"; private string? _selectedSection;
+    private int _cooldown, _maxContentLength = 500;
+    private Dictionary<string, Color> _roleColors = new(); private Dictionary<string, string> _authorAvatars = new(), _authorBadges = new(), _authorBadgeNames = new(), _authorBadgeIcons = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // ИСПРАВЛЕНО: используем GetItem без Generic
+        try { var saved = await LocalStorage.GetItem("dark_mode"); _isDarkMode = saved != "false"; } catch { _isDarkMode = true; }
+        var authState = await AuthProvider.GetAuthenticationStateAsync(); _isLoggedIn = authState.User.Identity?.IsAuthenticated == true; _userId = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? ""; _authorName = authState.User.Identity?.Name ?? "";
+        if (_isLoggedIn) { _isAdmin = await ForumService.IsAdminAsync(_userId); _isSuperAdmin = await ForumService.IsSuperAdminAsync(_userId); _maxContentLength = _isAdmin ? 2000 : 500; if (!_isAdmin) { try { _cooldown = await ForumService.GetCooldownSecondsAsync(_userId); } catch { } } }
+        try { _sections = await ForumService.GetSectionsAsync(); } catch { }
+        try { _topics = await ForumService.GetTopicsAsync(); } catch { }
+        if (_topics != null) foreach (var t in _topics) { if (!_roleColors.ContainsKey(t.AuthorId)) _roleColors[t.AuthorId] = await GetRoleColorAsync(t.AuthorId); if (!_authorAvatars.ContainsKey(t.AuthorId)) { var u = await ProfileService.GetUserProfileAsync(t.AuthorId); _authorAvatars[t.AuthorId] = u?.AvatarUrl ?? ""; } if (!_authorBadges.ContainsKey(t.AuthorId)) { var u = await ProfileService.GetUserProfileAsync(t.AuthorId); _authorBadges[t.AuthorId] = u?.PinnedBadge ?? ""; if (!string.IsNullOrEmpty(u?.PinnedBadge)) { var badge = (await AchievementService.GetAchievements(t.AuthorId)).FirstOrDefault(a => a.Id == u.PinnedBadge); if (badge != null) { _authorBadgeNames[t.AuthorId] = badge.Name; _authorBadgeIcons[t.AuthorId] = badge.Icon; } } } }
+    }
+
+    private async Task<Color> GetRoleColorAsync(string uid) { using var s = ServiceProvider.CreateScope(); var a = s.ServiceProvider.GetRequiredService<DarkPortal.Services.AdminService>(); if (await a.IsSuperAdminAsync(uid)) return Color.Error; if (await a.IsAdminAsync(uid)) return Color.Warning; return Color.Primary; }
+    private void ToggleAddSection() => _showAddSection = !_showAddSection; private void CancelAddSection() { _showAddSection = false; _newSectionName = ""; }
+    private async Task AddSection() { if (!string.IsNullOrWhiteSpace(_newSectionName)) { await ForumService.AddSectionAsync(_newSectionName); _newSectionName = ""; _showAddSection = false; _sections = await ForumService.GetSectionsAsync(); StateHasChanged(); } }
+    private async Task DeleteSection(int id) { await ForumService.DeleteSectionAsync(id); _sections = await ForumService.GetSectionsAsync(); _topics = await ForumService.GetTopicsAsync(_selectedSection); StateHasChanged(); }
+    private async Task TogglePinFromList(int id) { await ForumService.TogglePinAsync(id); _topics = await ForumService.GetTopicsAsync(_selectedSection); StateHasChanged(); }
+    private void InsertBold() => _newContent += "<b></b>"; private void InsertItalic() => _newContent += "<i></i>"; private void InsertUnderline() => _newContent += "<u></u>"; private void InsertBig() => _newContent += "<big></big>"; private void InsertStrike() => _newContent += "<s></s>";
+    private MarkupString ParseContent(string t) { if (string.IsNullOrEmpty(t)) return new MarkupString(""); t = System.Net.WebUtility.HtmlEncode(t); t = t.Replace("&lt;b&gt;", "<b>").Replace("&lt;/b&gt;", "</b>"); t = t.Replace("&lt;i&gt;", "<i>").Replace("&lt;/i&gt;", "</i>"); t = t.Replace("&lt;u&gt;", "<u>").Replace("&lt;/u&gt;", "</u>"); t = t.Replace("&lt;big&gt;", "<span style=\"font-size:1.3em;\">").Replace("&lt;/big&gt;", "</span>"); t = t.Replace("&lt;s&gt;", "<s>").Replace("&lt;/s&gt;", "</s>"); return new MarkupString(t); }
+    private async Task SelectSection(string? n) { _selectedSection = n; _topics = await ForumService.GetTopicsAsync(n); }
+
+    // ========== ИСПРАВЛЕННЫЙ МЕТОД CREATE TOPIC ==========
+    private async Task CreateTopic()
+    {
+        var result = await AntiSpam.CheckSpamAsync(_userId, _newContent);
+        if (result.IsBlocked || result.IsSpam)
+        {
+            // Можно показать уведомление
+            return;
+        }
+        await ForumService.CreateTopicAsync(_newTitle, _newContent, _userId, _authorName, _newSection);
+        _newTitle = _newContent = "";
+        _topics = await ForumService.GetTopicsAsync(_selectedSection);
+    }
+
+    private string Truncate(string t, int m) => t.Length <= m ? t : t[..m] + "...";
+
+    private async Task ConfirmDeleteTopicFromList(int id)
+    {
+        var parameters = new DialogParameters { ["Title"] = "Удаление темы", ["Message"] = "Вы уверены, что хотите удалить эту тему?", ["YesText"] = "Удалить", ["CancelText"] = "Отмена" };
+        var dialog = await DialogService.ShowAsync<MudMessageBox>("", parameters);
+        var result = await dialog.Result;
+        dialog.Close();
+        if (result?.Data as bool? == true) { await ForumService.DeleteTopicAsync(id); _topics = await ForumService.GetTopicsAsync(_selectedSection); StateHasChanged(); }
+    }
+}

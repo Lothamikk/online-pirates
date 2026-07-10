@@ -1,0 +1,63 @@
+﻿@page "/achievements"
+@inject DarkPortal.Services.AchievementService AchievementService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">
+    <MudIcon Icon="@Icons.Material.Filled.EmojiEvents" /> Достижения
+</MudText>
+
+@if (!_isLoggedIn)
+{
+    <MudAlert Severity="Severity.Info">
+        Войди в аккаунт, чтобы отслеживать достижения.
+        <MudLink Href="/auth">Войти</MudLink>
+    </MudAlert>
+}
+else
+{
+    <MudText Typo="Typo.body1" Class="mb-4">
+        Разблокировано: <b>@_unlockedCount</b> из <b>@achievements.Count</b>
+    </MudText>
+    <MudProgressLinear Value="@(_unlockedCount * 100 / Math.Max(achievements.Count, 1))"
+                       Color="Color.Primary" Class="mb-6" />
+
+    <MudGrid>
+        @foreach (var a in achievements)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <MudCard Elevation="4" Style="@(a.Unlocked ? "" : "opacity:0.5;")">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5" Color="@(a.Unlocked ? Enum.Parse<Color>(a.Color) : Color.Default)">
+                            <MudIcon Icon="@a.Icon" Size="Size.Large" /> @a.Name
+                        </MudText>
+                        <MudText Typo="Typo.body2" Class="mt-2">@a.Description</MudText>
+                        <MudChip T="string" Color="@(a.Unlocked ? Color.Success : Color.Default)"
+                                 Size="Size.Small" Class="mt-3">
+                            @(a.Unlocked ? "✅ Разблокировано" : "🔒 Заблокировано")
+                        </MudChip>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    private bool _isLoggedIn = false;
+    private string _userId = "";
+    private List<DarkPortal.Models.Achievement> achievements = new();
+    private int _unlockedCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        _isLoggedIn = authState.User.Identity?.IsAuthenticated == true;
+        _userId = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+
+        if (_isLoggedIn)
+        {
+            achievements = await AchievementService.GetAchievements(_userId);
+            _unlockedCount = achievements.Count(a => a.Unlocked);
+        }
+    }
+}

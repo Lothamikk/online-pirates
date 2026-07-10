@@ -1,0 +1,44 @@
+﻿@page "/learn/browser-wars"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🔐 Урок 2: Твой браузер — твой главный защитник</MudText>
+<MudAlert Severity="Severity.Info" Class="mt-4 mb-4">Браузер знает о тебе всё: где ты был, что искал, какие у тебя расширения. Настроим его правильно.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">1. Какой браузер ты используешь?</MudText><MudSelect T="string" Value="@_browser" ValueChanged="OnBrowserChanged" Label="Твой браузер" Variant="Variant.Outlined" Class="mt-2"><MudSelectItem Value="@("Chrome")">Chrome</MudSelectItem><MudSelectItem Value="@("Firefox")">Firefox</MudSelectItem><MudSelectItem Value="@("LibreWolf")">LibreWolf</MudSelectItem><MudSelectItem Value="@("Tor")">Tor Browser</MudSelectItem><MudSelectItem Value="@("Safari")">Safari</MudSelectItem></MudSelect>@if (!string.IsNullOrEmpty(_browserAdvice)){
+    <MudAlert Severity="@(_browserScore > 0 ? Severity.Success : Severity.Warning)" Class="mt-2">@_browserAdvice</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">2. Расширения для приватности</MudText><MudCheckBox T="bool" @bind-Checked="_ublock" Label="uBlock Origin" Color="Color.Success" Class="mt-2" /><MudCheckBox T="bool" @bind-Checked="_privacyBadger" Label="Privacy Badger" Color="Color.Success" /><MudCheckBox T="bool" @bind-Checked="_httpsEverywhere" Label="HTTPS Everywhere" Color="Color.Success" />@if (_ublock || _privacyBadger || _httpsEverywhere){
+    <MudAlert Severity="Severity.Success" Class="mt-2">✅ Отличный набор!</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">3. Режим инкогнито и куки</MudText><MudCheckBox T="bool" @bind-Checked="_incognito" Label="Инкогнито для важного" Color="Color.Info" Class="mt-2" /><MudCheckBox T="bool" @bind-Checked="_clearCookies" Label="Чищу куки после сессии" Color="Color.Info" /><MudAlert Severity="Severity.Info" Class="mt-2">💡 Инкогнито не делает невидимым — провайдер всё видит.</MudAlert></MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private string _browser = "", _browserAdvice = "", _userId = ""; private int _browserScore;
+    private bool _ublock, _privacyBadger, _httpsEverywhere, _incognito, _clearCookies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "browser-wars")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private void OnBrowserChanged(string v) { _browser = v; _browserScore = v switch { "LibreWolf" or "Tor" => 3, "Firefox" => 2, "Safari" => 1, _ => 0 }; _browserAdvice = v switch { "Chrome" => "⚠️ Chrome сливает данные.", "Firefox" => "👍 Firefox хорош.", "LibreWolf" => "✅ Отличный выбор!", "Tor" => "✅ Золотой стандарт.", _ => "" }; }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "browser-wars");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

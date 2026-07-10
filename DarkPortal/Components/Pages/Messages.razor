@@ -1,0 +1,81 @@
+﻿@page "/messages"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.MessageService MessageService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">
+    <MudIcon Icon="@Icons.Material.Filled.Message" /> Анонимное сообщение
+</MudText>
+
+<MudAlert Severity="Severity.Info" Class="mb-4">
+    Создай сообщение → получи одноразовую ссылку → отправь кому угодно. После прочтения удаляется навсегда.
+</MudAlert>
+
+@if (!string.IsNullOrEmpty(link))
+{
+    <MudCard Elevation="4" Class="mb-4">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Color="Color.Success">✅ Сообщение создано!</MudText>
+            <MudText Typo="Typo.body1" Class="mt-3">Одноразовая ссылка:</MudText>
+            <MudTextField T="string" Text="@link" ReadOnly="true" Variant="Variant.Outlined" Class="mt-2" />
+            <MudAlert Severity="Severity.Warning" Class="mt-3">
+                ⚠️ После прочтения сообщение удалится. Не открывай ссылку сам!
+            </MudAlert>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="CopyLink">📋 Копировать</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="Reset">Создать ещё</MudButton>
+        </MudCardActions>
+    </MudCard>
+}
+else
+{
+    <MudCard Elevation="4">
+        <MudCardContent>
+            <MudTextField T="string" Value="@messageText" ValueChanged="OnTextChanged"
+                          Immediate="true"
+                          Label="Твоё сообщение"
+                          Variant="Variant.Outlined" Lines="5"
+                          HelperText="@($"{messageText.Length}/300 символов")"
+                          MaxLength="300"
+                          Style="max-height:200px;overflow-y:auto;" />
+            <MudProgressLinear Value="@(messageText.Length * 100 / 300)"
+                               Color="@(messageText.Length > 270 ? Color.Error : messageText.Length > 200 ? Color.Warning : Color.Success)"
+                               Class="mt-2" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="CreateMessage"
+                       Disabled="@(string.IsNullOrWhiteSpace(messageText) || messageText.Length > 300)" FullWidth="true">
+                🔒 Создать анонимное сообщение
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+}
+
+@code {
+    private string messageText = "";
+    private string link = "";
+
+    private void OnTextChanged(string value)
+    {
+        messageText = value ?? "";
+    }
+
+    private async Task CreateMessage()
+    {
+        var message = await MessageService.CreateMessage(messageText);
+        link = $"{Navigation.BaseUri.TrimEnd('/')}/msg/{message.Id}";
+    }
+
+    private async Task CopyLink()
+    {
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", link);
+    }
+
+    private void Reset()
+    {
+        messageText = "";
+        link = "";
+    }
+}

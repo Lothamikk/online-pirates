@@ -1,0 +1,78 @@
+﻿@page "/tools"
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">
+    <MudIcon Icon="@Icons.Material.Filled.Build" /> Утилиты
+</MudText>
+<MudText Typo="Typo.body1" Class="mb-6">Бесплатные инструменты для проверки безопасности.</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="5">
+            <MudCardContent>
+                <MudText Typo="Typo.h5" Color="Color.Primary">
+                    <MudIcon Icon="@Icons.Material.Filled.Key" Size="Size.Large" /> Генератор паролей
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-3">Создай надёжный пароль.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/tools-pages/password" FullWidth="true">Открыть</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="5">
+            <MudCardContent>
+                <MudText Typo="Typo.h5" Color="Color.Error">
+                    <MudIcon Icon="@Icons.Material.Filled.Security" Size="Size.Large" /> Проверка утечек
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-3">Проверь пароль и email в HaveIBeenPwned.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Error" Href="/checker" FullWidth="true">Открыть</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="5">
+            <MudCardContent>
+                <MudText Typo="Typo.h5" Color="Color.Tertiary">
+                    <MudIcon Icon="@Icons.Material.Filled.Lock" Size="Size.Large" /> Шифратор
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-3">AES-256 шифрование сообщений.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Tertiary" Href="/crypto" FullWidth="true">Открыть</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="5">
+            <MudCardContent>
+                <MudText Typo="Typo.h5" Color="Color.Warning">
+                    <MudIcon Icon="@Icons.Material.Filled.Link" Size="Size.Large" /> Проверка ссылок
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-3">Проверь URL через VirusTotal.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Warning" Href="/tools-pages/urlcheck" FullWidth="true">Открыть</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="5">
+            <MudCardContent>
+                <MudText Typo="Typo.h5" Color="Color.Success">
+                    <MudIcon Icon="@Icons.Material.Filled.Image" Size="Size.Large" /> Метаданные фото
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-3">Узнай скрытые данные фото.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Success" Href="/tools-pages/photo" FullWidth="true">Открыть</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>

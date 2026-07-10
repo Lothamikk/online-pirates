@@ -1,0 +1,50 @@
+﻿@page "/learn/opsec"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🛡️ Урок 10: Твоя цифровая крепость</MudText>
+<MudAlert Severity="Severity.Success" Class="mt-4 mb-4">Финальный урок. Пройди чек-лист и узнай, насколько ты защищён.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">✅ Чек-лист OPSEC</MudText>@for (int i = 0; i < _checklist.Count; i++){var idx = i;
+    <MudCheckBox T="bool" @bind-Value="_checklist[idx].Done" Label="@_checklist[idx].Text" Color="@(_checklist[idx].Done ? Color.Success : Color.Default)" Class="mt-2" />
+}
+<MudProgressLinear Value="@_donePercent" Color="Color.Success" Class="mt-4" /><MudText Typo="Typo.body1" Class="mt-2">Выполнено: <b>@_doneCount из @_checklist.Count</b></MudText>@if (_doneCount >= 8){
+<MudAlert Severity="Severity.Success" Class="mt-4">🎉 Ты настоящий призрак!</MudAlert>
+}else if (_doneCount >= 5)
+{
+
+    <MudAlert Severity="Severity.Warning" Class="mt-4">👍 Хороший прогресс!</MudAlert>
+}
+else
+{
+
+    <MudAlert Severity="Severity.Info" Class="mt-4">🌱 Ты в начале пути.</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить все уроки</MudButton>
+
+@code {
+    private string _userId = "";
+    private List<CheckItem> _checklist = new() { new("Менеджер паролей"), new("2FA через приложение"), new("Платный VPN"), new("Firefox + uBlock"), new("Tor"), new("PGP"), new("PIN на SIM"), new("Monero"), new("Чищу метаданные"), new("Проверяю ссылки") };
+    private int _doneCount => _checklist.Count(c => c.Done);
+    private double _donePercent => _checklist.Count > 0 ? (_doneCount * 100.0 / _checklist.Count) : 0;
+    private class CheckItem(string t) { public string Text { get; set; } = t; public bool Done { get; set; } }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "opsec")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "opsec");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

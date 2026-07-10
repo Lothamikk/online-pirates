@@ -1,0 +1,1465 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project 1\\DarkPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\render.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\render.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\localeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\localeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\languageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\languageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\userprofile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\userprofile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\lessons.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\lessons.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\lessonprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\lessonprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\cryptolesson.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\cryptolesson.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\lessonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\lessonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\admin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\admin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\auth.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\auth.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\achievementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\achievementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\friends.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\friends.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\userfriends.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\userfriends.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\settings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\settings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\banredirector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\banredirector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\friendservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\friendservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\opsec.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\opsec.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\phishing.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\phishing.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\simswap.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\simswap.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\pgp.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\pgp.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\darknet.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\darknet.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\onionlayer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\onionlayer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\vpnmask.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\vpnmask.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\browserwars.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\browserwars.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\learn\\dataisoil.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\learn\\dataisoil.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\forumview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\forumview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\appeal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\appeal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\banned.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\banned.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\banappeal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\banappeal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\banappealstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\banappealstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\forumservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\forumservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\forumtopic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\forumtopic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\urldialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\urldialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\editprofiledialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\editprofiledialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\achievements.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\achievements.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\passwordgenerator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\passwordgenerator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\banrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\banrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\resetpassworddialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\resetpassworddialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\addnewsdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\addnewsdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\edituserdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\edituserdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\confirmdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\confirmdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\banreasondialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\banreasondialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\adminlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\adminlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\darkportal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\darkportal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\forum.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\forum.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\antispamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\antispamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\baninfo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\baninfo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\profilecomment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\profilecomment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\dialogs\\achievementsdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\dialogs\\achievementsdialog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\friendship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\friendship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\notfound.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\notfound.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\seedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\seedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\warning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\warning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\cryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\cryptoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\toolspages\\urlcheck.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\toolspages\\urlcheck.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\testmessages.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\testmessages.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\rssbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\rssbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\messageview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\messageview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\messages.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\messages.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\messagecleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\messagecleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\secretmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\secretmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\tools.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\tools.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\toolspages\\photo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\toolspages\\photo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\toolspages\\password.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\toolspages\\password.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\checker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\checker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\hibpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\hibpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\feed.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\feed.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\components\\pages\\crypto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\components\\pages\\crypto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\services\\translationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\services\\translationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\userdataprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\userdataprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|d:\\project 1\\darkportal\\darkportal\\models\\newsitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAA25F8-62CF-5329-42D1-360BD2678349}|DarkPortal\\DarkPortal.csproj|solutionrelative:darkportal\\models\\newsitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAAAL0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T20:43:53.036Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Home.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAUwGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:38:14.929Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Program.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Program.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Program.cs",
+              "RelativeToolTip": "DarkPortal\\Program.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAUwKoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T20:38:15.741Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "render.yaml",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\render.yaml",
+              "RelativeDocumentMoniker": "DarkPortal\\render.yaml",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\render.yaml",
+              "RelativeToolTip": "DarkPortal\\render.yaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-07-10T22:41:49.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "DarkPortal\\wwwroot\\css\\site.css",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "DarkPortal\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAE0CAAAAAAAAAAAqwHkCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-09T14:10:31.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Admin.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Admin.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Admin.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Admin.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Admin.razor",
+              "ViewState": "AgIAAP4BAAAAAAAAAAAuwCcCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:20:08.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LessonService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LessonService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\LessonService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LessonService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\LessonService.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAIwE0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T23:15:33.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CryptoLesson.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\CryptoLesson.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\CryptoLesson.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\CryptoLesson.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\CryptoLesson.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:30:02.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserProfile.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\UserProfile.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\UserProfile.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\UserProfile.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\UserProfile.razor",
+              "ViewState": "AgIAANcAAAAAAAAAAAAqwOQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-30T21:30:34.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LanguageService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LanguageService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\LanguageService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LanguageService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\LanguageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T12:12:01.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LocaleService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LocaleService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\LocaleService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LocaleService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\LocaleService.cs",
+              "ViewState": "AgIAADsBAAAAAAAAAAAmwFYBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T12:22:11.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AchievementService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AchievementService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\AchievementService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AchievementService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\AchievementService.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAiwDoAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T13:43:06.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Lessons.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Lessons.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Lessons.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Lessons.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Lessons.razor",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAhwLkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-10T20:58:21.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Friends.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Friends.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Friends.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Friends.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Friends.razor",
+              "ViewState": "AgIAADwAAAAAAAAAAAAuwGUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-10T19:23:11.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LessonProgress.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\LessonProgress.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\LessonProgress.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\LessonProgress.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\LessonProgress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T10:42:40.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Auth.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Auth.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Auth.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Auth.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Auth.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-27T10:46:26.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "VpnMask.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\VpnMask.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\VpnMask.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\VpnMask.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\VpnMask.razor",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAuwDIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:22:14.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Opsec.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Opsec.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\Opsec.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Opsec.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\Opsec.razor",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAuwDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:30:22.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NotificationService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\NotificationService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\NotificationService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\NotificationService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\NotificationService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwDQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T20:05:16.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserFriends.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\UserFriends.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\UserFriends.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\UserFriends.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\UserFriends.razor",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-10T20:07:17.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Settings.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Settings.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Settings.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Settings.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Settings.razor",
+              "ViewState": "AgIAADoAAAAAAAAAAAAuwGMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-27T12:13:40.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "BanRedirector.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\BanRedirector.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\BanRedirector.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\BanRedirector.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\BanRedirector.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T16:02:31.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Phishing.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Phishing.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\Phishing.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Phishing.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\Phishing.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:29:34.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SimSwap.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\SimSwap.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\SimSwap.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\SimSwap.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\SimSwap.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:27:25.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Pgp.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Pgp.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\Pgp.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Pgp.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\Pgp.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:39:26.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FriendService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\FriendService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\FriendService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\FriendService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\FriendService.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwDwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T11:55:33.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Darknet.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Darknet.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\Darknet.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\Darknet.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\Darknet.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T06:39:12.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "OnionLayer.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\OnionLayer.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\OnionLayer.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\OnionLayer.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\OnionLayer.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:37:45.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "BrowserWars.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\BrowserWars.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\BrowserWars.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\BrowserWars.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\BrowserWars.razor",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAuwCsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:35:28.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "DataIsOil.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\DataIsOil.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Learn\\DataIsOil.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Learn\\DataIsOil.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Learn\\DataIsOil.razor",
+              "ViewState": "AgIAABMAAAAAAAAAAAAuwDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:04:33.367Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ForumView.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ForumView.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\ForumView.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ForumView.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\ForumView.razor",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAuwB0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-30T15:36:48.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ForumService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\ForumService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\ForumService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\ForumService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\ForumService.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAwEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:35:49.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Appeal.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Appeal.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Appeal.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Appeal.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Appeal.razor",
+              "ViewState": "AgIAADEAAAAAAAAAAAAuwFUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T00:56:51.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Banned.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Banned.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Banned.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Banned.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Banned.razor",
+              "ViewState": "AgIAADAAAAAAAAAAAAAwwFQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-08T20:08:03.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "BanAppeal.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanAppeal.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\BanAppeal.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanAppeal.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\BanAppeal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T20:53:34.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "App.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\App.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\App.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\App.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T20:37:12.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AdminService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\AdminService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AdminService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\AdminService.cs",
+              "ViewState": "AgIAANEBAAAAAAAAAAAzwOMBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T06:19:11.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "BanAppealStatus.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanAppealStatus.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\BanAppealStatus.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanAppealStatus.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\BanAppealStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T16:25:26.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ProfileService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\ProfileService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\ProfileService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\ProfileService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\ProfileService.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAiwJoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T21:16:30.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ForumTopic.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\ForumTopic.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\ForumTopic.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\ForumTopic.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\ForumTopic.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T19:57:48.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Achievements.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Achievements.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Achievements.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Achievements.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Achievements.razor",
+              "ViewState": "AgIAACUAAAAAAAAAAAAcwD4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T13:44:17.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "EditProfileDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\EditProfileDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\EditProfileDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\EditProfileDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\EditProfileDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T14:14:16.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "UrlDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\UrlDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\UrlDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\UrlDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\UrlDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T14:14:32.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "app.css",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "DarkPortal\\wwwroot\\app.css",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\app.css",
+              "RelativeToolTip": "DarkPortal\\wwwroot\\app.css",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-07T00:10:18.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "DarkPortal\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAIwBAAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T10:39:25.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "BanRecord.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanRecord.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\BanRecord.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\BanRecord.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\BanRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T22:58:05.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "PasswordGenerator.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\PasswordGenerator.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\PasswordGenerator.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\PasswordGenerator.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\PasswordGenerator.razor",
+              "ViewState": "AgIAADEAAAAAAAAAAAAQwFYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T13:27:33.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\_Imports.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\_Imports.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T20:54:18.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "ResetPasswordDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\ResetPasswordDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\ResetPasswordDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\ResetPasswordDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\ResetPasswordDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T09:10:13.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "BanReasonDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\BanReasonDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\BanReasonDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\BanReasonDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\BanReasonDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T08:55:46.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "ConfirmDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\ConfirmDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\ConfirmDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\ConfirmDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\ConfirmDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T08:55:59.922Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "EditUserDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\EditUserDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\EditUserDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\EditUserDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\EditUserDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T08:56:13.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "AddNewsDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\AddNewsDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\AddNewsDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\AddNewsDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\AddNewsDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T08:56:32.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\AppUser.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\AppUser.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\AppUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T10:36:56.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "AdminLog.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\AdminLog.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\AdminLog.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\AdminLog.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\AdminLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T22:27:16.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "DarkPortal.csproj",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\DarkPortal.csproj",
+              "RelativeDocumentMoniker": "DarkPortal\\DarkPortal.csproj",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\DarkPortal.csproj",
+              "RelativeToolTip": "DarkPortal\\DarkPortal.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-27T10:38:07.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "Forum.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Forum.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Forum.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Forum.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Forum.razor",
+              "ViewState": "AgIAAHkAAAAAAAAAAIBJwIIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-30T15:36:28.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "AntiSpamService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AntiSpamService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\AntiSpamService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\AntiSpamService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\AntiSpamService.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAQwFAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-01T22:48:26.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "LocalStorageService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LocalStorageService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\LocalStorageService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\LocalStorageService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\LocalStorageService.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwEUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T22:53:05.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "BanInfo.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\BanInfo.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\BanInfo.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\BanInfo.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\BanInfo.razor",
+              "ViewState": "AgIAABcAAAAAAAAAAAAYwCkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-08T23:56:39.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "ProfileComment.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\ProfileComment.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\ProfileComment.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\ProfileComment.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\ProfileComment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-01T22:27:37.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "AchievementsDialog.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\AchievementsDialog.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Dialogs\\AchievementsDialog.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Dialogs\\AchievementsDialog.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Dialogs\\AchievementsDialog.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-04T23:31:30.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "theme.js",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js",
+              "RelativeDocumentMoniker": "DarkPortal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js",
+              "RelativeToolTip": "DarkPortal\\wwwroot\\lib\\bootstrap\\dist\\js\\theme.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-06T21:21:18.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "Friendship.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Friendship.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\Friendship.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Friendship.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\Friendship.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T11:54:41.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Routes.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Routes.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-05T10:17:52.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "NotFound.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\NotFound.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\NotFound.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\NotFound.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\NotFound.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-05T10:22:54.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "SeedService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\SeedService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\SeedService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\SeedService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\SeedService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T10:57:18.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "CryptoService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\CryptoService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\CryptoService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\CryptoService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\CryptoService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAwwDIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T22:35:27.73Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "Warning.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Warning.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\Warning.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Warning.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\Warning.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-01T22:48:06.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "UrlCheck.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\UrlCheck.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\ToolsPages\\UrlCheck.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\UrlCheck.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\ToolsPages\\UrlCheck.razor",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwBQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T12:05:32.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "UploadController.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Controllers\\UploadController.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Controllers\\UploadController.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Controllers\\UploadController.cs",
+              "RelativeToolTip": "DarkPortal\\Components\\Controllers\\UploadController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T21:59:59.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "TestMessages.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\TestMessages.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\TestMessages.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\TestMessages.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\TestMessages.razor",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAmwBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T14:08:55.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "MessageView.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\MessageView.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\MessageView.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\MessageView.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\MessageView.razor",
+              "ViewState": "AgIAACMAAAAAAAAAAAAmwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T13:53:32.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "Messages.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Messages.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Messages.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Messages.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Messages.razor",
+              "ViewState": "AgIAADcAAAAAAAAAAAAYwFAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T13:53:15.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "MessageCleanupService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\MessageCleanupService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\MessageCleanupService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\MessageCleanupService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\MessageCleanupService.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T13:50:48.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\MessageService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\MessageService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\MessageService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\MessageService.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAmwFIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T13:50:30.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "SecretMessage.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\SecretMessage.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\SecretMessage.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\SecretMessage.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\SecretMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T13:49:27.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "Achievement.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Achievement.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\Achievement.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\Achievement.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\Achievement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T13:42:43.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "Password.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\Password.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\ToolsPages\\Password.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\Password.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\ToolsPages\\Password.razor",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAcwDcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T12:07:17.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "Photo.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\Photo.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\ToolsPages\\Photo.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\ToolsPages\\Photo.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\ToolsPages\\Photo.razor",
+              "ViewState": "AgIAABEAAAAAAAAAAAAcwCoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-29T12:06:38.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "Checker.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Checker.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Checker.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Checker.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Checker.razor",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowG4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-27T22:48:06.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "HibpService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\HibpService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\HibpService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\HibpService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\HibpService.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAA7wMwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T22:47:21.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "TranslationService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\TranslationService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\TranslationService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\TranslationService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\TranslationService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAcwCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T11:35:51.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "RssBackgroundService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\RssBackgroundService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\RssBackgroundService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\RssBackgroundService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\RssBackgroundService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAYwGcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-27T11:26:29.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "Crypto.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Crypto.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Crypto.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Crypto.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Crypto.razor",
+              "ViewState": "AgIAABQAAAAAAAAAAAAowDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T22:36:37.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "Feed.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Feed.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Feed.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Feed.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Feed.razor",
+              "ViewState": "AgIAAAUAAAAAAAAAAEBlwB0AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T22:04:45.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "NewsService.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\NewsService.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Services\\NewsService.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Services\\NewsService.cs",
+              "RelativeToolTip": "DarkPortal\\Services\\NewsService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T21:58:42.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "NewsItem.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\NewsItem.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\NewsItem.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\NewsItem.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\NewsItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T21:57:09.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "Tools.razor",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Tools.razor",
+              "RelativeDocumentMoniker": "DarkPortal\\Components\\Pages\\Tools.razor",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Components\\Pages\\Tools.razor",
+              "RelativeToolTip": "DarkPortal\\Components\\Pages\\Tools.razor",
+              "ViewState": "AgIAADQAAAAAAAAAAAAcwEsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-26T21:42:37.498Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "UserDataProfile.cs",
+              "DocumentMoniker": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\UserDataProfile.cs",
+              "RelativeDocumentMoniker": "DarkPortal\\Models\\UserDataProfile.cs",
+              "ToolTip": "D:\\Project 1\\DarkPortal\\DarkPortal\\Models\\UserDataProfile.cs",
+              "RelativeToolTip": "DarkPortal\\Models\\UserDataProfile.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAcwCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T21:01:40.893Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

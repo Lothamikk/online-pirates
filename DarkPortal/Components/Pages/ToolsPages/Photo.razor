@@ -1,0 +1,43 @@
+﻿@page "/tools-pages/photo"
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">📷 Метаданные фото</MudText>
+<MudAlert Severity="Severity.Warning" Class="mb-4">
+    Каждое фото содержит скрытые данные: GPS-координаты, модель телефона, дату съёмки и даже серийный номер камеры.
+</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4">
+    <MudCardContent>
+        <MudText Typo="Typo.h6">Что такое метаданные (EXIF)?</MudText>
+        <MudText Typo="Typo.body1" Class="mt-2">
+            EXIF (Exchangeable Image File Format) — это скрытая информация, которую камера или телефон записывают в каждый снимок. Туда попадают:
+        </MudText>
+        <MudText Typo="Typo.body1" Class="mt-2">• GPS-координаты (где сделано фото)</MudText>
+        <MudText Typo="Typo.body1">• Дата и время съёмки</MudText>
+        <MudText Typo="Typo.body1">• Модель устройства (iPhone 15 Pro, Samsung S24 и т.д.)</MudText>
+        <MudText Typo="Typo.body1">• Настройки камеры (диафрагма, выдержка, ISO)</MudText>
+        <MudText Typo="Typo.body1">• Серийный номер камеры</MudText>
+        <MudText Typo="Typo.body1">• Программа, которой редактировали фото</MudText>
+
+        <MudAlert Severity="Severity.Error" Class="mt-4">
+            ⚠️ Опасность: по GPS-координатам можно узнать твой домашний адрес или где ты сейчас находишься.
+        </MudAlert>
+
+        <MudText Typo="Typo.h6" Class="mt-4">Как удалить метаданные:</MudText>
+        <MudText Typo="Typo.body1" Class="mt-2">• Windows: ПКМ по фото → Свойства → Подробно → Удалить свойства</MudText>
+        <MudText Typo="Typo.body1">• macOS: Превью → Инструменты → Показать инспектор → GPS → Удалить</MudText>
+        <MudText Typo="Typo.body1">• Android/iOS: Отключи геотеги в настройках камеры</MudText>
+        <MudText Typo="Typo.body1">• Онлайн: exif.regex.info, verexif.com</MudText>
+    </MudCardContent>
+</MudCard>
+
+<MudCard Elevation="4">
+    <MudCardContent>
+        <MudText Typo="Typo.h6">🔗 Онлайн-анализаторы EXIF:</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="https://exif.regex.info" Target="_blank" Class="mt-3" FullWidth="true">
+            exif.regex.info — просмотреть EXIF онлайн
+        </MudButton>
+        <MudButton Variant="Variant.Outlined" Color="Color.Primary" Href="https://verexif.com" Target="_blank" Class="mt-2" FullWidth="true">
+            verexif.com — удалить EXIF онлайн
+        </MudButton>
+    </MudCardContent>
+</MudCard>

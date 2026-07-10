@@ -1,0 +1,86 @@
+﻿@page "/appeal"
+@rendermode InteractiveServer
+@inject AdminService AdminService
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+@using System.Web
+
+<PageTitle>Апелляция — Online Pirates</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-8">
+    <MudPaper Class="pa-6" Elevation="5">
+        <div style="text-align:center;font-size:2.5rem;margin-bottom:8px;">📝</div>
+        <MudText Typo="Typo.h5" Style="text-align:center;font-weight:700;">Подача апелляции</MudText>
+
+        <div style="background:#181C24;border-radius:12px;padding:12px;margin-top:16px;border-left:4px solid #F59E0B;">
+            <MudText Style="color:#E5E7EB;font-size:0.95rem;">
+                <strong style="color:#F59E0B;">🚫 Причина бана:</strong> @_reason
+            </MudText>
+            <MudText Style="color:#E5E7EB;font-size:0.95rem;margin-top:2px;">
+                <strong style="color:#F59E0B;">👤 Администратор:</strong> @_admin
+            </MudText>
+            <MudText Style="color:#E5E7EB;font-size:0.95rem;margin-top:2px;">
+                <strong style="color:#F59E0B;">📅 Дата:</strong> @_date
+            </MudText>
+        </div>
+
+        <MudTextField @bind-Value="_text" Label="Текст апелляции" Lines="5" Variant="Variant.Outlined" FullWidth="true"
+                      HelperText="Опишите ситуацию" Style="margin-top:16px;" />
+
+        <div style="display:flex;gap:10px;margin-top:16px;">
+            <MudButton Variant="Variant.Filled" OnClick="Submit" Disabled="@string.IsNullOrWhiteSpace(_text)"
+                       Style="flex:1;background-color:#2E8B57;color:#FFFFFF;">
+                Отправить
+            </MudButton>
+            <MudButton Variant="Variant.Outlined" OnClick="GoHome">Отмена</MudButton>
+        </div>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    [Parameter] public string? UserId { get; set; }
+    [Parameter] public string? UserName { get; set; }
+    [Parameter] public string? Reason { get; set; }
+    [Parameter] public string? Admin { get; set; }
+    [Parameter] public string? Date { get; set; }
+
+    private string _text = "";
+    private string _reason = "";
+    private string _admin = "";
+    private string _date = "";
+
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(Navigation.Uri);
+        var query = HttpUtility.ParseQueryString(uri.Query);
+
+        Reason = query["reason"];
+        Admin = query["admin"];
+        Date = query["date"];
+        UserId = query["userId"];
+        UserName = query["userName"];
+
+        _reason = Reason ?? "Не указано";
+        _admin = Admin ?? "Не указано";
+        _date = Date ?? "Не указано";
+    }
+
+    private async Task Submit()
+    {
+        if (string.IsNullOrWhiteSpace(_text)) return;
+
+        await AdminService.AddBanAppealAsync(
+            UserId ?? "",
+            UserName ?? "",
+            _reason,
+            _admin,
+            _text
+        );
+
+        Snackbar.Add("✅ Апелляция отправлена! Администратор рассмотрит её.", Severity.Success);
+        await Task.Delay(1500);
+        Navigation.NavigateTo("/");
+    }
+
+    private void GoHome() => Navigation.NavigateTo("/");
+}

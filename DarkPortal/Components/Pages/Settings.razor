@@ -1,0 +1,100 @@
+﻿@page "/settings"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Identity
+@inject DarkPortal.Services.LanguageService LanguageService
+@inject DarkPortal.Services.LocaleService Locale
+@inject NavigationManager Navigation
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject UserManager<DarkPortal.Models.AppUser> UserManager
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">⚙️ Настройки</MudText>
+
+<MudGrid>
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="3">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">🌐 Язык</MudText>
+                <MudSelect T="string" Value="@LanguageService.CurrentLanguage" ValueChanged="OnLanguageChanged"
+                           Label="Выбери язык" Variant="Variant.Outlined" Class="mt-4">
+                    <MudSelectItem Value="@("ru")">🇷🇺 Русский</MudSelectItem>
+                    <MudSelectItem Value="@("en")">🇬🇧 English</MudSelectItem>
+                    <MudSelectItem Value="@("de")">🇩🇪 Deutsch</MudSelectItem>
+                    <MudSelectItem Value="@("fr")">🇫🇷 Français</MudSelectItem>
+                    <MudSelectItem Value="@("es")">🇪🇸 Español</MudSelectItem>
+                </MudSelect>
+                @if (_showSaved)
+                {
+                    <MudAlert Severity="Severity.Success" Class="mt-4">Готово!</MudAlert>
+                }
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+
+    @if (_isLoggedIn)
+    {
+        <MudItem xs="12" md="6">
+            <MudCard Elevation="3">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">🔑 Код восстановления</MudText>
+                    @if (_showRecoveryCode)
+                    {
+                        <MudText Typo="Typo.h5" Color="Color.Warning" Class="mt-2">@_recoveryCode</MudText>
+                    }
+                    else
+                    {
+                        <MudText Typo="Typo.h5" Color="Color.Secondary" Class="mt-2">••••••••••••</MudText>
+                    }
+                    <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="ToggleRecoveryCode" Class="mt-2">
+                        @(_showRecoveryCode ? "Скрыть" : "Показать")
+                    </MudButton>
+                    <MudAlert Severity="Severity.Warning" Class="mt-4">⚠️ Сохрани этот код. Без него нельзя сбросить пароль!</MudAlert>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="6">
+            <MudCard Elevation="3">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">👤 Информация об аккаунте</MudText>
+                    <MudDivider Class="my-2" />
+                    <MudText>Логин: <b>@_userName</b></MudText>
+                    <MudText>Зарегистрирован: <b>@_registeredAt.ToString("dd.MM.yyyy")</b></MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    private bool _showSaved, _isLoggedIn, _showRecoveryCode;
+    private string _recoveryCode = "", _userName = "";
+    private DateTime _registeredAt;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        _isLoggedIn = user.Identity?.IsAuthenticated == true;
+
+        if (_isLoggedIn)
+        {
+            var appUser = await UserManager.GetUserAsync(user);
+            _recoveryCode = appUser?.RecoveryCode ?? "";
+            _userName = appUser?.UserName ?? "";
+            _registeredAt = appUser?.CreatedAt ?? DateTime.MinValue;
+        }
+    }
+
+    private void ToggleRecoveryCode() => _showRecoveryCode = !_showRecoveryCode;
+
+    private async void OnLanguageChanged(string lang)
+    {
+        LanguageService.SetLanguage(lang);
+        Locale.SetLanguage(lang);
+        _showSaved = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        _showSaved = false;
+        StateHasChanged();
+    }
+}

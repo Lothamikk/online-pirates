@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.EntityFrameworkCore
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+@inject IServiceProvider ServiceProvider
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthProvider.GetAuthenticationStateAsync();
+        if (!state.User.Identity?.IsAuthenticated == true) return;
+
+        var userId = state.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId)) return;
+
+        using var scope = ServiceProvider.CreateScope();
+        var userManager = scope.ServiceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<DarkPortal.Models.AppUser>>();
+        var db = scope.ServiceProvider.GetRequiredService<DarkPortal.Data.AppDbContext>();
+
+        var user = await userManager.FindByIdAsync(userId);
+        if (user != null && await userManager.IsLockedOutAsync(user))
+        {
+            var currentPath = new Uri(Navigation.Uri).AbsolutePath;
+            if (!currentPath.StartsWith("/banned") && !currentPath.StartsWith("/appeal") && !currentPath.StartsWith("/api/"))
+            {
+                var ban = await db.BanRecords
+                    .Where(b => b.UserId == user.Id && b.UnbannedAt == null)
+                    .OrderByDescending(b => b.BannedAt)
+                    .FirstOrDefaultAsync();
+
+                var reason = ban?.Reason ?? "Не указана";
+                var adminName = ban?.AdminName ?? "Неизвестно";
+                var localTime = (ban?.BannedAt ?? DateTime.UtcNow).AddHours(3);
+                var date = localTime.ToString("yyyy-MM-dd HH:mm");
+
+                Navigation.NavigateTo($"/banned?reason={Uri.EscapeDataString(reason)}&admin={Uri.EscapeDataString(adminName)}&date={Uri.EscapeDataString(date)}&userName={Uri.EscapeDataString(user.UserName!)}&userId={Uri.EscapeDataString(user.Id)}", forceLoad: true);
+            }
+        }
+    }
+}

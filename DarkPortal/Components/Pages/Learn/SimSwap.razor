@@ -1,0 +1,31 @@
+﻿@page "/learn/simswap"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">📱 Урок 7: SIM-swap — как не потерять всё</MudText>
+<MudAlert Severity="Severity.Error" Class="mt-4 mb-4">Мошенник перевыпускает твою SIM и получает доступ к SMS, почте, банку.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">🛡️ Как защититься?</MudText><MudCheckBox T="bool" @bind-Checked="_setPin" Label="PIN-код на SIM" Color="Color.Success" Class="mt-2" /><MudCheckBox T="bool" @bind-Checked="_useApp2FA" Label="Приложения-аутентификаторы вместо SMS" Color="Color.Success" /><MudCheckBox T="bool" @bind-Checked="_operatorPass" Label="Пароль у оператора" Color="Color.Success" /></MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private bool _setPin, _useApp2FA, _operatorPass; private string _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "simswap")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "simswap");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

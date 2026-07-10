@@ -1,0 +1,36 @@
+﻿@page "/learn/darknet"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🌑 Урок 5: Мифы и правда о даркнете</MudText>
+<MudAlert Severity="Severity.Warning" Class="mt-4 mb-4">Даркнет — инструмент для журналистов и активистов.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">📖 Что такое даркнет?</MudText><MudText Typo="Typo.body1">Скрытая сеть поверх интернета, доступ через Tor.</MudText><MudAlert Severity="Severity.Warning" Class="mt-3">⚠️ Мы не призываем нарушать закон.</MudAlert></MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">🛡️ Правила безопасности</MudText><MudCheckBox T="bool" @bind-Checked="_knowSafety" Label="Tor + VPN, не светить данные, PGP" Color="Color.Success" Class="mt-2" />@if (!_knowSafety){
+    <MudAlert Severity="Severity.Warning" Class="mt-2">💡 Изучи правила безопасности.</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private bool _knowSafety; private string _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "darknet")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "darknet");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

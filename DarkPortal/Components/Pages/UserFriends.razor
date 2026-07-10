@@ -1,0 +1,48 @@
+﻿@page "/friends/{UserId}"
+@rendermode InteractiveServer
+@using DarkPortal.Models
+@using DarkPortal.Services
+@inject FriendService FriendService
+@inject AdminService AdminService
+@inject NavigationManager Navigation
+
+<PageTitle>Друзья — Online Pirates</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-6">
+    <MudText Typo="Typo.h4" Class="mb-2" Style="font-weight:600;">@_profileName — друзья (@_friends.Count)</MudText>
+    <MudButton Variant="Variant.Text" Href="@($"/profile/{UserId}")" Class="mb-4">← Назад к профилю</MudButton>
+
+    @if (_friends.Any())
+    {
+        @foreach (var friend in _friends)
+        {
+            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--card-bg);border-radius:12px;margin-bottom:8px;border:1px solid var(--border);">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2E8B57,#181C24);display:flex;align-items:center;justify-content:center;color:#FFF;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0;">
+                    @(friend.DisplayName?.FirstOrDefault().ToString().ToUpper() ?? friend.UserName?.FirstOrDefault().ToString().ToUpper() ?? "?")
+                </div>
+                <MudLink Href="@($"/profile/{friend.Id}")" Typo="Typo.body1" Style="font-weight:600;flex:1;">
+                    @(friend.DisplayName ?? friend.UserName)
+                </MudLink>
+            </div>
+        }
+    }
+    else
+    {
+        <MudText Typo="Typo.body1" Color="Color.Secondary" Style="text-align:center;padding:40px;">
+            Список друзей пуст
+        </MudText>
+    }
+</MudContainer>
+
+@code {
+    [Parameter] public string? UserId { get; set; }
+    private List<AppUser> _friends = new();
+    private string _profileName = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _friends = await FriendService.GetFriends(UserId!);
+        var user = await AdminService.GetUserByIdAsync(UserId);
+        _profileName = user?.DisplayName ?? user?.UserName ?? "Пользователь";
+    }
+}

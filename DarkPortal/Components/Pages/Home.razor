@@ -1,0 +1,101 @@
+﻿@page "/"
+@inject DarkPortal.Services.ProfileService ProfileState
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+
+<MudText Typo="Typo.h2" Color="Color.Primary" Class="mb-4">// @Loc.T("home.title")</MudText>
+
+@if (_isLoggedIn)
+{
+    <MudPaper Elevation="3" Class="pa-4 mb-6">
+        <MudText Typo="Typo.h6">📚 Прогресс обучения</MudText>
+        <MudText Typo="Typo.body2" Class="mt-2">Пройдено @_completedLessons из @_totalLessons уроков</MudText>
+        <MudProgressLinear Value="@(_completedLessons * 100 / _totalLessons)" Color="Color.Primary" Class="mt-2" />
+    </MudPaper>
+}
+
+<MudText Typo="Typo.h6" Class="mb-4">@Loc.T("home.subtitle")</MudText>
+
+<MudGrid>
+    @foreach (var lesson in GetLessons())
+    {
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Elevation="5">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" Color="Color.Primary">
+                        @if (lesson.IsLocked)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Lock" Size="Size.Small" Color="Color.Default" />
+                        }
+                        @if (lesson.IsCompleted)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Color="Color.Success" Size="Size.Small" Class="ml-2" />
+                        }
+                        @lesson.Title
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="mt-2">@lesson.Description</MudText>
+                    <MudChip T="string" Class="mt-2" Size="Size.Small" Color="Color.Secondary">@lesson.Level</MudChip>
+                </MudCardContent>
+                <MudCardActions>
+                    @if (lesson.IsLocked)
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Default" Disabled="true" EndIcon="@Icons.Material.Filled.Lock">🔒 Пройди предыдущий</MudButton>
+                    }
+                    else
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@lesson.Link" EndIcon="@Icons.Material.Filled.ArrowForward">@Loc.T("button.enter")</MudButton>
+                    }
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    private bool _isLoggedIn = false;
+    private string _userId = "";
+    private int _completedLessons = 0;
+    private int _totalLessons = 10;
+
+    public class Lesson
+    {
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string Level { get; set; } = "";
+        public string Link { get; set; } = "";
+        public bool IsCompleted { get; set; }
+        public bool IsLocked { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        _isLoggedIn = authState.User.Identity?.IsAuthenticated == true;
+        _userId = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+
+        if (_isLoggedIn)
+        {
+            _completedLessons = await LessonService.GetCompletedCount(_userId);
+        }
+    }
+
+    private List<Lesson> GetLessons()
+    {
+        var completed = _completedLessons;
+
+        return new List<Lesson>
+        {
+            new() { Title = Loc.T("lesson.1"), Description = Loc.T("lesson.1.desc"), Level = Loc.T("level.beginner"), Link = "/learn/data-is-oil", IsLocked = false },
+            new() { Title = Loc.T("lesson.2"), Description = Loc.T("lesson.2.desc"), Level = Loc.T("level.beginner"), Link = "/learn/browser-wars", IsLocked = completed < 1 },
+            new() { Title = Loc.T("lesson.3"), Description = Loc.T("lesson.3.desc"), Level = Loc.T("level.medium"), Link = "/learn/vpn-mask", IsLocked = completed < 2 },
+            new() { Title = Loc.T("lesson.4"), Description = Loc.T("lesson.4.desc"), Level = Loc.T("level.advanced"), Link = "/learn/onion-layer", IsLocked = completed < 3 },
+            new() { Title = Loc.T("lesson.5"), Description = Loc.T("lesson.5.desc"), Level = Loc.T("level.advanced"), Link = "/learn/darknet", IsLocked = completed < 4 },
+            new() { Title = Loc.T("lesson.6"), Description = Loc.T("lesson.6.desc"), Level = Loc.T("level.advanced"), Link = "/learn/pgp", IsLocked = completed < 5 },
+            new() { Title = Loc.T("lesson.7"), Description = Loc.T("lesson.7.desc"), Level = Loc.T("level.medium"), Link = "/learn/simswap", IsLocked = completed < 6 },
+            new() { Title = Loc.T("lesson.8"), Description = Loc.T("lesson.8.desc"), Level = Loc.T("level.beginner"), Link = "/learn/phishing", IsLocked = completed < 7 },
+            new() { Title = Loc.T("lesson.9"), Description = Loc.T("lesson.9.desc"), Level = Loc.T("level.advanced"), Link = "/learn/crypto-lesson", IsLocked = completed < 8 },
+            new() { Title = Loc.T("lesson.10"), Description = Loc.T("lesson.10.desc"), Level = Loc.T("level.advanced"), Link = "/learn/opsec", IsLocked = completed < 9 },
+        };
+    }
+}

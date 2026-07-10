@@ -1,0 +1,26 @@
+﻿@page "/test-messages"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.MessageService MessageService
+
+<h3>Тест сообщений</h3>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Create">Создать тестовое сообщение</MudButton>
+
+@if (!string.IsNullOrEmpty(_testId))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-4">
+        ID: @_testId
+        <br />
+        <MudLink Href="@($"/msg/{_testId}")">Перейти к сообщению</MudLink>
+    </MudAlert>
+}
+
+@code {
+    private string _testId = "";
+
+    private async Task Create()
+    {
+        var msg = await MessageService.CreateMessage("Тестовое сообщение " + DateTime.Now);
+        _testId = msg.Id;
+    }
+}

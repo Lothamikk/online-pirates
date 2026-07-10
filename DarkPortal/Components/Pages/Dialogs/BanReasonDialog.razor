@@ -1,0 +1,18 @@
+﻿@using MudBlazor
+<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="_reason" Label="Причина блокировки" Lines="3" Required="true" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Отмена</MudButton>
+        <MudButton Color="Color.Error" OnClick="Submit" Disabled="@string.IsNullOrWhiteSpace(_reason)">Заблокировать</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = default!;
+    private string _reason = "";
+
+    private void Submit() => MudDialog.Close(DialogResult.Ok(_reason));
+    private void Cancel() => MudDialog.Cancel();
+}

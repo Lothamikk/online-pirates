@@ -1,0 +1,36 @@
+﻿@page "/learn/onion-layer"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🧅 Урок 4: Tor и луковая маршрутизация</MudText>
+<MudAlert Severity="Severity.Info" Class="mt-4 mb-4">Tor пропускает твой трафик через три случайных узла.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">📖 Как работает Tor</MudText><MudText Typo="Typo.body1">Трафик шифруется трижды: Входной → Промежуточный → Выходной узел.</MudText><MudAlert Severity="Severity.Warning" Class="mt-3">⚠️ Выходной узел видит незашифрованный трафик. Всегда HTTPS!</MudAlert></MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">🛡️ Мосты Tor</MudText><MudRadioGroup T="string" @bind-Value="_useBridges" Class="mt-2"><MudRadio T="string" Value="@("yes")" Color="Color.Success">Использую мосты</MudRadio><MudRadio T="string" Value="@("no")" Color="Color.Warning">Не использую</MudRadio></MudRadioGroup>@if (_useBridges == "no"){
+    <MudAlert Severity="Severity.Warning" Class="mt-2">💡 Мосты: bridges.torproject.org.</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private string _useBridges = "", _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "onion-layer")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "onion-layer");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

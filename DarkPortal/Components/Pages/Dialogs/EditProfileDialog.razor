@@ -1,0 +1,20 @@
+﻿@using MudBlazor
+<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="_bio" Label="О себе" Lines="3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Отмена</MudButton>
+        <MudButton Color="Color.Success" OnClick="Save" Style="background-color:#2E8B57;color:#000000;">Сохранить</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = default!;
+    [Parameter] public string Bio { get; set; } = "";
+    private string _bio = "";
+
+    protected override void OnInitialized() => _bio = Bio;
+    private void Save() => MudDialog.Close(DialogResult.Ok(_bio));
+    private void Cancel() => MudDialog.Cancel();
+}

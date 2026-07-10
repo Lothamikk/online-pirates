@@ -1,0 +1,11 @@
+﻿services:
+  - type: web
+    name: online-pirates
+    runtime: dotnet
+    repo: https://github.com/Lothamikk/online-pirates
+    plan: free
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: http://+:5000
+    buildCommand: dotnet publish -c Release -o out
+    startCommand: dotnet out/DarkPortal.dll

@@ -1,0 +1,33 @@
+﻿@page "/learn/pgp"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🔑 Урок 6: PGP — шифрование для всех</MudText>
+<MudAlert Severity="Severity.Info" Class="mt-4 mb-4">PGP позволяет шифровать сообщения так, что прочитает только получатель.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">📖 Как работает PGP?</MudText><MudText Typo="Typo.body1">Публичный ключ (раздаёшь) + Приватный ключ (хранишь).</MudText></MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">🛠️ Как начать?</MudText><MudText Typo="Typo.body1">Kleopatra (Gpg4win) или ProtonMail.</MudText><MudRadioGroup T="string" @bind-Value="_willTry" Class="mt-2"><MudRadio T="string" Value="@("yes")" Color="Color.Success">Попробую</MudRadio><MudRadio T="string" Value="@("later")" Color="Color.Warning">Позже</MudRadio></MudRadioGroup></MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private string _willTry = "", _userId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "pgp")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "pgp");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

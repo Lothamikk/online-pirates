@@ -1,0 +1,50 @@
+﻿@page "/crypto"
+@inject DarkPortal.Services.CryptoService CryptoService
+@inject DarkPortal.Services.LocaleService Loc
+
+<MudText Typo="Typo.h4" Color="Color.Primary"><MudIcon Icon="@Icons.Material.Filled.Lock" /> @Loc.T("crypto.title")</MudText>
+<MudAlert Severity="Severity.Warning" Class="mt-4 mb-6">@Loc.T("crypto.alert")</MudAlert>
+
+<MudGrid>
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="3">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">🔒 @Loc.T("crypto.encrypt")</MudText>
+                <MudTextField T="string" @bind-Value="plainText" Label="@Loc.T("crypto.text")" Variant="Variant.Outlined" Lines="3" Class="mt-4" />
+                <MudTextField T="string" @bind-Value="encryptPassword" Label="@Loc.T("crypto.password")" Variant="Variant.Outlined" InputType="InputType.Password" Class="mt-4" />
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="EncryptMessage" FullWidth="true">@Loc.T("crypto.encryptbtn")</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="3">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">🔓 @Loc.T("crypto.decrypt")</MudText>
+                <MudTextField T="string" @bind-Value="cipherText" Label="@Loc.T("crypto.cipher")" Variant="Variant.Outlined" Lines="3" Class="mt-4" />
+                <MudTextField T="string" @bind-Value="decryptPassword" Label="@Loc.T("crypto.password")" Variant="Variant.Outlined" InputType="InputType.Password" Class="mt-4" />
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Tertiary" OnClick="DecryptMessage" FullWidth="true">@Loc.T("crypto.decryptbtn")</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+@if (!string.IsNullOrEmpty(resultMessage))
+{
+    <MudPaper Elevation="4" Class="pa-4 mt-6">
+        <MudText Typo="Typo.h5" Color="@(isError ? Color.Error : Color.Success)">@(isError ? Loc.T("crypto.error") : Loc.T("crypto.result"))</MudText>
+        <MudDivider Class="my-3" />
+        <MudTextField T="string" Text="@resultMessage" ReadOnly="true" Variant="Variant.Outlined" Lines="4" />
+    </MudPaper>
+}
+
+@code {
+    private string plainText = "", encryptPassword = "", cipherText = "", decryptPassword = "", resultMessage = "";
+    private bool isError = false;
+
+    private void EncryptMessage() { try { resultMessage = CryptoService.Encrypt(plainText, encryptPassword); isError = false; } catch (Exception ex) { resultMessage = ex.Message; isError = true; } }
+    private void DecryptMessage() { try { resultMessage = CryptoService.Decrypt(cipherText, decryptPassword); isError = false; } catch { resultMessage = "Wrong password or corrupted data."; isError = true; } }
+}

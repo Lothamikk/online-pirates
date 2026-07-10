@@ -1,0 +1,51 @@
+﻿@page "/learn/vpn-mask"
+@rendermode InteractiveServer
+@inject DarkPortal.Services.LocaleService Loc
+@inject DarkPortal.Services.LessonService LessonService
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<MudText Typo="Typo.h4" Color="Color.Primary">🌐 Урок 3: VPN — твой первый щит</MudText>
+<MudAlert Severity="Severity.Info" Class="mt-4 mb-4">VPN шифрует твой трафик и скрывает IP от провайдера.</MudAlert>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">1. Выбери протокол</MudText><MudSelect T="string" Value="@_protocol" ValueChanged="OnProtocolChanged" Label="VPN Протокол" Variant="Variant.Outlined" Class="mt-2"><MudSelectItem Value="@("WireGuard")">⚡ WireGuard</MudSelectItem><MudSelectItem Value="@("OpenVPN")">🔒 OpenVPN</MudSelectItem><MudSelectItem Value="@("IKEv2")">📱 IKEv2</MudSelectItem><MudSelectItem Value="@("L2TP")">⚠️ L2TP</MudSelectItem><MudSelectItem Value="@("PPTP")">💀 PPTP</MudSelectItem></MudSelect>@if (!string.IsNullOrEmpty(_protocolAdvice)){
+    <MudAlert Severity="@(_protocolScore > 0 ? Severity.Success : Severity.Error)" Class="mt-2">@_protocolAdvice</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">2. Выбери страну</MudText><MudSelect T="string" Value="@_country" ValueChanged="OnCountryChanged" Label="Страна сервера" Variant="Variant.Outlined" Class="mt-2"><MudSelectItem Value="@("ch")">🇨🇭 Швейцария</MudSelectItem><MudSelectItem Value="@("pa")">🇵🇦 Панама</MudSelectItem><MudSelectItem Value="@("ic")">🇮🇸 Исландия</MudSelectItem><MudSelectItem Value="@("us")">🇺🇸 США</MudSelectItem><MudSelectItem Value="@("ru")">🇷🇺 Россия</MudSelectItem></MudSelect>@if (!string.IsNullOrEmpty(_countryAdvice)){
+    <MudAlert Severity="@(_countryScore > 0 ? Severity.Success : Severity.Warning)" Class="mt-2">@_countryAdvice</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudCard Elevation="4" Class="mb-4"><MudCardContent><MudText Typo="Typo.h6">3. Бесплатный vs Платный</MudText><MudRadioGroup T="string" @bind-Value="_vpnType" Class="mt-2"><MudRadio T="string" Value="@("free")" Color="Color.Error">Бесплатный</MudRadio><MudRadio T="string" Value="@("paid")" Color="Color.Success">Платный (Mullvad, ProtonVPN)</MudRadio></MudRadioGroup>@if (_vpnType == "free"){
+    <MudAlert Severity="Severity.Error" Class="mt-2">⚠️ Бесплатные VPN продают твои данные.</MudAlert>
+}
+@if (_vpnType == "paid")
+{
+    <MudAlert Severity="Severity.Success" Class="mt-2">✅ Правильно!</MudAlert>
+}
+</MudCardContent></MudCard>
+
+<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="CompleteLesson" Class="mt-4" FullWidth="true">✅ Завершить урок</MudButton>
+
+@code {
+    private string _protocol = "", _protocolAdvice = "", _country = "", _countryAdvice = "", _vpnType = "", _userId = ""; private int _protocolScore, _countryScore;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var a = await AuthProvider.GetAuthenticationStateAsync();
+        _userId = a.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        if (string.IsNullOrEmpty(_userId)) { Navigation.NavigateTo("/auth"); return; }
+        if (!await LessonService.CanAccessLesson(_userId, "vpn-mask")) { Navigation.NavigateTo("/lessons"); return; }
+    }
+
+    private void OnProtocolChanged(string v) { _protocol = v; _protocolScore = v switch { "WireGuard" or "OpenVPN" => 3, "IKEv2" => 2, _ => 0 }; _protocolAdvice = v switch { "PPTP" => "💀 PPTP взломан.", "L2TP" => "⚠️ L2TP устарел.", "IKEv2" => "👍 Хорош для телефона.", "OpenVPN" => "✅ Проверенный.", "WireGuard" => "✅ Быстрый и безопасный.", _ => "" }; }
+    private void OnCountryChanged(string v) { _country = v; _countryScore = v switch { "ch" or "pa" or "ic" => 3, _ => 0 }; _countryAdvice = v switch { "us" => "⚠️ 14 глаз.", "ru" => "⚠️ СОРМ.", "ch" => "✅ Отличный выбор.", "pa" => "✅ Нет логов.", "ic" => "✅ Свобода слова.", _ => "" }; }
+
+    private async Task CompleteLesson()
+    {
+        if (!string.IsNullOrEmpty(_userId)) await LessonService.MarkCompleted(_userId, "vpn-mask");
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

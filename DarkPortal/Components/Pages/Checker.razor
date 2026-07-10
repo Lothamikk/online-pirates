@@ -1,0 +1,111 @@
+﻿@page "/checker"
+@inject DarkPortal.Services.HibpService Hibp
+@inject DarkPortal.Services.LocaleService Loc
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">
+    <MudIcon Icon="@Icons.Material.Filled.Security" /> @Loc.T("checker.title")
+</MudText>
+
+<MudGrid>
+    @* Проверка пароля *@
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="4">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">🔑 @Loc.T("checker.password")</MudText>
+                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">@Loc.T("checker.passdesc")</MudText>
+                <MudTextField T="string" @bind-Value="password" Label="@Loc.T("crypto.password")"
+                              Variant="Variant.Outlined" InputType="@(_showPass ? InputType.Text : InputType.Password)"
+                              Class="mt-4" Adornment="Adornment.End"
+                              AdornmentIcon="@(_showPass ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)"
+                              OnAdornmentClick="TogglePassVisibility" />
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="CheckPassword"
+                           Disabled="@(string.IsNullOrWhiteSpace(password) || isCheckingPass)" FullWidth="true">
+                    @(isCheckingPass ? Loc.T("checker.checking") : Loc.T("checker.check"))
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+
+        @if (passResult != null)
+        {
+            <MudCard Elevation="3" Class="mt-4">
+                <MudCardContent>
+                    <MudText Typo="Typo.h5" Color="@(passResult.IsPwned ? Color.Error : Color.Success)">
+                        @(passResult.IsPwned ? "❌ " + Loc.T("checker.pwned") : "✅ " + Loc.T("checker.safe"))
+                    </MudText>
+
+                    @if (passResult.IsPwned)
+                    {
+                        <MudAlert Severity="Severity.Error" Class="mt-2">
+                            @Loc.T("checker.found") <b>@passResult.PwnedCount.ToString("N0")</b> @Loc.T("checker.times")
+                        </MudAlert>
+                    }
+
+                    <MudText Typo="Typo.body2" Class="mt-3">
+                        @Loc.T("checker.score"): <b>@passResult.Score / 7</b>
+                    </MudText>
+                    <MudProgressLinear Value="@(passResult.Score * 100 / 7)"
+                                       Color="@(passResult.Score >= 5 ? Color.Success : passResult.Score >= 3 ? Color.Warning : Color.Error)" Class="mt-1" />
+
+                    <MudText Typo="Typo.h6" Class="mt-4">@Loc.T("checker.recommendations"):</MudText>
+                    @foreach (var tip in passResult.Recommendations)
+                    {
+                        <MudText Typo="Typo.body2" Class="mt-1">@tip</MudText>
+                    }
+
+                    @if (passResult.IsPwned)
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Error" Href="/tools" Class="mt-4" FullWidth="true">
+                            🔧 @Loc.T("checker.goto")
+                        </MudButton>
+                    }
+                </MudCardContent>
+            </MudCard>
+        }
+    </MudItem>
+
+    @* Проверка email *@
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="4">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">📧 @Loc.T("checker.email")</MudText>
+                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">@Loc.T("checker.emaildesc")</MudText>
+                <MudTextField T="string" @bind-Value="email" Label="Email" Variant="Variant.Outlined" Class="mt-4" />
+                <MudAlert Severity="Severity.Info" Class="mt-4">@Loc.T("checker.emailapi")</MudAlert>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Tertiary"
+                           Href="@GetHibpUrl()" Target="_blank" FullWidth="true"
+                           Disabled="@string.IsNullOrWhiteSpace(email)">
+                    🔗 @Loc.T("checker.openhibp")
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private string password = "";
+    private string email = "";
+    private bool isCheckingPass = false;
+    private bool _showPass = false;
+    private DarkPortal.Services.HibpService.PasswordResult? passResult;
+
+    private void TogglePassVisibility() => _showPass = !_showPass;
+
+    private async Task CheckPassword()
+    {
+        isCheckingPass = true;
+        StateHasChanged();
+        passResult = await Hibp.CheckPasswordAsync(password);
+        isCheckingPass = false;
+        StateHasChanged();
+    }
+
+    private string GetHibpUrl()
+    {
+        if (string.IsNullOrWhiteSpace(email)) return "https://haveibeenpwned.com";
+        return $"https://haveibeenpwned.com/account/{Uri.EscapeDataString(email)}";
+    }
+}

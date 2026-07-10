@@ -1,0 +1,46 @@
+﻿@page "/tools-pages/urlcheck"
+
+<MudText Typo="Typo.h4" Color="Color.Primary" Class="mb-6">🔗 Проверка ссылок</MudText>
+
+<MudGrid>
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="4">
+            <MudCardContent>
+                <MudTextField T="string" Value="@url" ValueChanged="OnUrlChanged" Label="Введи URL для проверки" Variant="Variant.Outlined" />
+                <MudText Typo="Typo.body2" Class="mt-4">
+                    Проверь сайт на фишинг и вредоносность через VirusTotal (откроется в новом окне).
+                </MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                           Href="@GetVirusTotalUrl()" Target="_blank" FullWidth="true"
+                           Disabled="@string.IsNullOrWhiteSpace(url)">
+                    🔍 Проверить через VirusTotal
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="4">
+            <MudCardContent>
+                <MudText Typo="Typo.h6">Как проверить сайт вручную:</MudText>
+                <MudText Typo="Typo.body2" Class="mt-2">1. Проверь URL: нет ли замены букв (paypaI вместо paypal)</MudText>
+                <MudText Typo="Typo.body2">2. Наведи на ссылку — увидишь реальный адрес</MudText>
+                <MudText Typo="Typo.body2">3. Проверь сертификат (замочек в адресной строке)</MudText>
+                <MudText Typo="Typo.body2">4. Загугли название сайта + "scam" или "мошенники"</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private string url = "";
+
+    private void OnUrlChanged(string value) => url = value ?? "";
+
+    private string GetVirusTotalUrl()
+    {
+        if (string.IsNullOrWhiteSpace(url)) return "https://www.virustotal.com";
+        return $"https://www.virustotal.com/gui/search/{Uri.EscapeDataString(url)}";
+    }
+}
